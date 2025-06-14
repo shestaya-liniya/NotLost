@@ -1,0 +1,152 @@
+.Container {
+  width: 100%;
+}
+
+.Header {
+  height: 1.875rem;
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0 0.5rem;
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-default-tiny);
+
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background-color: var(--color-chat-hover);
+
+    &.sidebarTab {
+      background-color: var(--color-background-secondary);
+      color: #6B6B6B;
+    }
+    i {
+      opacity: 1
+    }
+  }
+
+  &:active {
+    background-color: rgba(40,40,40, 0.8);
+  }
+
+  &.selected {
+    background-color: var(--color-telegram-blue);
+
+    :global(.icon) {
+      color: white;
+
+      &:hover {
+        background-color: white;
+        color: var(--color-telegram-blue)
+      }
+    }
+
+    .title {
+      color: white;
+    }
+  }
+
+  &.section {
+    .title {
+      font-size: 0.750rem;
+    }
+  }
+
+  &.sidebarTab {
+    .title {
+      color: #6B6B6B;
+    }
+  }
+
+  .title {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  :global(.icon) {
+    padding: 0.125rem;
+    border-radius: var(--border-radius-default-tiny);
+    transition: all 0.15s ease;
+    color: var(--color-text-secondary);
+
+    &:hover {
+      background-color: var(--color-borders);
+    }
+
+    &.rotate {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+  :global(.icon) {
+
+    &.rotate {
+      transform: rotate(-90deg);
+    }
+  }
+
+.Actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-left: auto;
+
+  :global(.icon) {
+    opacity: 0;
+  }
+}
+
+.Inner {
+  margin-top: 1px;
+  padding-bottom: 0.5rem;
+
+  > * + * {
+    margin-top: 1px;
+  }
+
+  &.insetInner {
+    padding-left: 0.5rem;
+  }
+}
+
+.EditingContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 0.5rem;
+
+  .editingLeftIcon {
+    color: var(--color-links);
+  }
+
+  input {
+    outline: none;
+    border: none;
+    padding-left: 0.5rem;
+    background: var(--color-button);
+    border-radius: var(--border-radius-default-tiny);
+    width: 100%;
+    border: 1px solid transparent;
+    caret-color: var(--color-links);
+
+    font-size: 0.875rem;
+
+    
+
+    &:focus {
+      border-color: var(--color-links)
+    }
+  }
+}
+
+:global(.ListItem-button) {
+  padding: 0 !important;
+  min-height: unset !important;
+}
+
+:global(.Chat .ListItem-button) {
+  padding: 0.25rem 0.5rem !important;
+}

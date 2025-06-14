@@ -176,6 +176,34 @@ export function getOrderKey(chatId: string, isForSaved?: boolean) {
   return isForSaved ? summary.orderInSaved : summary.orderInAll;
 }
 
+export function getAllBotsIds() {
+  const allOrderedIds = results.orderedIdsByFolderId[ALL_FOLDER_ID];
+  const chatSummaries = prepared.chatSummariesById;
+
+  return allOrderedIds?.filter(
+    (id) => chatSummaries.get(id)?.isUserBot,
+  );
+}
+
+export function getAllGroupsIds() {
+  const allOrderedIds = results.orderedIdsByFolderId[ALL_FOLDER_ID];
+  const chatSummaries = prepared.chatSummariesById;
+
+  return allOrderedIds?.filter((id) => {
+    const type = chatSummaries.get(id)?.type;
+    return type === 'chatTypeBasicGroup' || type === 'chatTypeSuperGroup';
+  });
+}
+
+export function getAllChannelsIds() {
+  const allOrderedIds = results.orderedIdsByFolderId[ALL_FOLDER_ID];
+  const chatSummaries = prepared.chatSummariesById;
+
+  return allOrderedIds?.filter((id) => {
+    return chatSummaries.get(id)?.type === 'chatTypeChannel';
+  });
+}
+
 /* Callback managers */
 
 export function addOrderedIdsCallback(folderId: number, callback: (orderedIds: string[]) => void) {

@@ -1,3 +1,4 @@
+import type { ApiWorkspace } from '../../api/notlost/types';
 import type {
   ApiAppConfig,
   ApiAttachBot,
@@ -450,6 +451,12 @@ export type GlobalState = {
     balance: ApiStarsAmount;
     history: StarsTransactionHistory;
     subscriptions?: StarsSubscriptions;
+  };
+
+  workspaces: {
+    activeId: string | undefined;
+    byOrder: ApiWorkspace[];
+    areLoaded: boolean;
   };
 };
 

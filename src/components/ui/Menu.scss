@@ -36,6 +36,10 @@
 
     background-color: var(--color-background);
     box-shadow: 0 0.25rem 0.5rem 0.125rem var(--color-default-shadow);
+    border-radius: var(--border-radius-default);
+    z-index: var(--z-menu-bubble);
+    overscroll-behavior: contain;
+    color: var(--color-text);
 
     transition: opacity 150ms cubic-bezier(0.2, 0, 0.2, 1), transform 150ms cubic-bezier(0.2, 0, 0.2, 1) !important;
 
@@ -48,7 +52,8 @@
     }
 
     &.closing {
-      transition: opacity 0.2s ease-in, transform 0.2s ease-in !important;
+      transform: scale(1) !important;
+      transition: opacity 0.2s ease-in !important;
     }
 
     &.close-fast {

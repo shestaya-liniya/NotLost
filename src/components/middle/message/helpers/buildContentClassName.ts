@@ -185,7 +185,6 @@ export function buildContentClassName(
   }
 
   if (!isCustomShape) {
-    classNames.push('has-shadow');
 
     if (isMedia && hasThread) {
       classNames.push('has-background');

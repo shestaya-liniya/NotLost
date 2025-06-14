@@ -1,5 +1,7 @@
 import type { FC } from '../../../lib/teact/teact';
-import { memo, useEffect, useMemo } from '../../../lib/teact/teact';
+import {
+  memo, useEffect, useMemo, useState,
+} from '../../../lib/teact/teact';
 import { getActions, withGlobal } from '../../../global';
 
 import type {
@@ -15,6 +17,7 @@ import type {
   ApiUserStatus,
 } from '../../../api/types';
 import type { ObserveFn } from '../../../hooks/useIntersectionObserver';
+import type { AvatarSize } from '../../common/Avatar';
 import type { ChatAnimationTypes } from './hooks';
 import { MAIN_THREAD_ID } from '../../../api/types';
 import { StoryViewerOrigin } from '../../../types';
@@ -33,7 +36,6 @@ import {
   selectCurrentMessageList,
   selectDraft,
   selectIsCurrentUserFrozen,
-  selectIsForumPanelClosed,
   selectIsForumPanelOpen,
   selectNotifyDefaults,
   selectNotifyException,
@@ -53,7 +55,6 @@ import buildClassName from '../../../util/buildClassName';
 import { isUserId } from '../../../util/entities/ids';
 import { createLocationHash } from '../../../util/routing';
 
-import useSelectorSignal from '../../../hooks/data/useSelectorSignal';
 import useAppLayout from '../../../hooks/useAppLayout';
 import useChatContextActions from '../../../hooks/useChatContextActions';
 import useEnsureMessage from '../../../hooks/useEnsureMessage';
@@ -66,13 +67,10 @@ import useChatListEntry from './hooks/useChatListEntry';
 import Avatar from '../../common/Avatar';
 import DeleteChatModal from '../../common/DeleteChatModal';
 import FullNameTitle from '../../common/FullNameTitle';
-import Icon from '../../common/icons/Icon';
 import StarIcon from '../../common/icons/StarIcon';
-import LastMessageMeta from '../../common/LastMessageMeta';
 import ListItem from '../../ui/ListItem';
 import ChatFolderModal from '../ChatFolderModal.async';
 import MuteChatModal from '../MuteChatModal.async';
-import ChatBadge from './ChatBadge';
 import ChatCallStatus from './ChatCallStatus';
 
 import './Chat.scss';
@@ -86,6 +84,9 @@ type OwnProps = {
   offsetTop?: number;
   isSavedDialog?: boolean;
   isPreview?: boolean;
+  isStatic?: boolean;
+  withSubtitle?: boolean;
+  avatarSize?: AvatarSize;
   previewMessageId?: number;
   className?: string;
   observeIntersection?: ObserveFn;
@@ -133,7 +134,7 @@ const Chat: FC<OwnProps & StateProps> = ({
   user,
   userStatus,
   lastMessageSender,
-  lastMessageOutgoingStatus,
+  // lastMessageOutgoingStatus,
   offsetTop,
   draft,
   withInterfaceAnimations,
@@ -149,6 +150,9 @@ const Chat: FC<OwnProps & StateProps> = ({
   isSavedDialog,
   currentUserId,
   isPreview,
+  isStatic,
+  withSubtitle,
+  avatarSize,
   previewMessageId,
   className,
   isSynced,
@@ -199,7 +203,9 @@ const Chat: FC<OwnProps & StateProps> = ({
     topics,
   });
 
-  const getIsForumPanelClosed = useSelectorSignal(selectIsForumPanelClosed);
+  // const getIsForumPanelClosed = useSelectorSignal(selectIsForumPanelClosed);
+
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = useLastCallback(() => {
     const noForumTopicPanel = isMobile && isForumAsMessages;
@@ -325,6 +331,20 @@ const Chat: FC<OwnProps & StateProps> = ({
     return `#${createLocationHash(chatId, 'thread', MAIN_THREAD_ID)}`;
   }, [chatId, currentUserId, isSavedDialog]);
 
+  const topicsWithUnread = useMemo(() => (
+    isForum && topics ? Object.values(topics).filter(({ unreadCount }) => unreadCount) : undefined
+  ), [topics, isForum]);
+
+  const unreadCount = useMemo(() => {
+    if (!isForum && chat) {
+      return chat.unreadCount;
+    }
+
+    return topicsWithUnread?.length;
+  }, [chat, topicsWithUnread, isForum]);
+
+  const isUnread = Boolean(unreadCount);
+
   if (!chat) {
     return undefined;
   }
@@ -334,10 +354,10 @@ const Chat: FC<OwnProps & StateProps> = ({
   const chatClassName = buildClassName(
     'Chat chat-item-clickable',
     isUserId(chatId) ? 'private' : 'group',
-    isForum && 'forum',
     isSelected && 'selected',
     isSelectedForum && 'selected-forum',
-    isPreview && 'standalone',
+    !withSubtitle && 'aligned',
+    Boolean(isPreview || isStatic) && 'standalone',
     className,
   );
 
@@ -346,7 +366,7 @@ const Chat: FC<OwnProps & StateProps> = ({
       ref={ref}
       className={chatClassName}
       href={href}
-      style={`top: ${offsetTop}px`}
+      style={`top: ${offsetTop}px;`}
       ripple={!isForum && !isMobile}
       contextActions={contextActions}
       onClick={handleClick}
@@ -354,16 +374,23 @@ const Chat: FC<OwnProps & StateProps> = ({
       withPortalForMenu
     >
       <div className={buildClassName('status', 'status-clickable')}>
-        <Avatar
-          peer={peer}
-          isSavedMessages={user?.isSelf}
-          isSavedDialog={isSavedDialog}
-          size={isPreview ? 'medium' : 'large'}
-          withStory={!user?.isSelf}
-          withStoryGap={isAvatarOnlineShown || Boolean(chat.subscriptionUntil)}
-          storyViewerOrigin={StoryViewerOrigin.ChatList}
-          storyViewerMode="single-peer"
-        />
+        <div
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <Avatar
+            peer={peer}
+            isSavedMessages={user?.isSelf}
+            isSavedDialog={isSavedDialog}
+            size={avatarSize || (isPreview ? 'small' : 'medium')}
+            forceRoundedRect
+            withStory={!user?.isSelf}
+            withStoryGap={isAvatarOnlineShown || Boolean(chat.subscriptionUntil)}
+            storyViewerOrigin={StoryViewerOrigin.ChatList}
+            storyViewerMode="single-peer"
+          />
+        </div>
+
         <div className="avatar-badge-wrapper">
           <div
             className={buildClassName('avatar-online', 'avatar-badge', isAvatarOnlineShown && 'avatar-online-shown')}
@@ -371,14 +398,14 @@ const Chat: FC<OwnProps & StateProps> = ({
           {!isAvatarOnlineShown && Boolean(chat.subscriptionUntil) && (
             <StarIcon type="gold" className="avatar-badge avatar-subscription" size="adaptive" />
           )}
-          <ChatBadge
+          {/* <ChatBadge
             chat={chat}
             isMuted={isMuted}
             shouldShowOnlyMostImportant
             forceHidden={getIsForumPanelClosed}
             topics={topics}
             isSelected={isSelected}
-          />
+          /> */}
         </div>
         {chat.isCallActive && chat.isCallNotEmpty && (
           <ChatCallStatus isMobile={isMobile} isSelected={isSelected} isActive={withInterfaceAnimations} />
@@ -386,26 +413,30 @@ const Chat: FC<OwnProps & StateProps> = ({
       </div>
       <div className="info">
         <div className="info-row">
-          <FullNameTitle
-            peer={peer}
-            withEmojiStatus
-            isSavedMessages={chatId === user?.id && user?.isSelf}
-            isSavedDialog={isSavedDialog}
-            observeIntersection={observeIntersection}
-          />
-          {isMuted && !isSavedDialog && <Icon name="muted" />}
-          <div className="separator" />
+          {isHovered && !withSubtitle
+            ? renderSubtitle()
+            : (
+              <FullNameTitle
+                peer={peer}
+                withEmojiStatus
+                isSavedMessages={chatId === user?.id && user?.isSelf}
+                isSavedDialog={isSavedDialog}
+                observeIntersection={observeIntersection}
+              />
+            )}
+          {/* <div className="separator" />
           {lastMessage && (
             <LastMessageMeta
               message={lastMessage}
               outgoingStatus={!isSavedDialog ? lastMessageOutgoingStatus : undefined}
               draftDate={draft?.date}
             />
-          )}
+          )} */}
         </div>
-        <div className="subtitle">
-          {renderSubtitle()}
-          {!isPreview && (
+        {withSubtitle && (
+          <div className="subtitle">
+            {renderSubtitle()}
+            {/* {!isPreview && (
             <ChatBadge
               chat={chat}
               isPinned={isPinned}
@@ -415,9 +446,12 @@ const Chat: FC<OwnProps & StateProps> = ({
               topics={topics}
               isSelected={isSelected}
             />
-          )}
-        </div>
+          )} */}
+          </div>
+        )}
       </div>
+      <div className={`shadow-container ${isUnread && 'unread'} ${isMuted && 'muted'} ${!withSubtitle && 'aligned'}`} />
+
       {shouldRenderDeleteModal && (
         <DeleteChatModal
           isOpen={isDeleteModalOpen}

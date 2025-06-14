@@ -120,6 +120,7 @@ body.cursor-ew-resize {
 }
 
 #middle-column-portals,
+#middle-column-left-sidebar-portals,
 #portals {
   position: absolute;
   top: 0;
@@ -128,7 +129,7 @@ body.cursor-ew-resize {
 
   height: 0;
 }
-
+#middle-column-left-sidebar-portals,
 #middle-column-portals {
   top: calc(0rem - var(--call-header-height, 0rem));
 }
@@ -377,10 +378,10 @@ body:not(.is-ios) {
   --color-background-menu-separator: rgba(255, 255, 255, 0.102);
   --color-background-secondary: rgb(15, 15, 15);
   --color-background-secondary-accent: rgb(25, 25, 25);
-  --color-background-own: rgb(118, 106, 200);
-  --color-background-own-apple: rgb(118, 106, 200);
+  --color-background-own: #0362CC;
+  --color-background-own-apple: #0362CC;
   --color-background-selected: rgb(44, 44, 44);
-  --color-background-own-selected: rgb(101, 73, 212);
+  --color-background-own-selected: #0362CC;
   --color-chat-hover: rgb(44, 44, 44);
   --color-chat-active: rgb(118, 106, 200);
   --color-chat-active-greyed: rgb(146, 136, 211);

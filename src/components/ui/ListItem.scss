@@ -63,20 +63,19 @@
   }
 
   .ListItem-button {
-    --ripple-color: rgba(0, 0, 0, 0.08);
-
-    position: relative;
-
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-
-    min-height: 3rem;
-    padding: 0 1rem;
+    min-height: 2.5rem;
+    background-color: var(--background-color);
     border: none !important;
-    border-radius: var(--border-radius-default);
-
+    box-shadow: none !important;
+    outline: none !important;
+    display: flex;
+    padding: 0 1rem;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
     color: var(--color-text);
+    border-radius: var(--border-radius-medium);
+    --ripple-color: rgba(0, 0, 0, 0.08);
     text-decoration: none;
     white-space: nowrap;
 
@@ -220,7 +219,7 @@
     }
 
     .ListItem-button {
-      padding: 0.5625rem;
+      padding: 0.25rem;
     }
 
     &.contact-list-item {
@@ -266,13 +265,9 @@
     .status,
     .typing-status {
       overflow: hidden;
-
-      margin: 0;
-
-      font-size: 1rem;
-      text-align: initial;
-      text-overflow: ellipsis;
       white-space: nowrap;
+      text-overflow: clip;
+      text-align: initial;
     }
 
     h3,
@@ -283,7 +278,8 @@
 
     .title {
       h3 {
-        font-weight: var(--font-weight-semibold);
+        font-size: 0.875rem;
+        font-weight: var(--font-weight-medium);
       }
     }
 
@@ -363,7 +359,8 @@
     .typing-status {
       body.is-ios &,
       body.is-macos & {
-        font-size: 0.9375rem;
+        line-height: 0.875rem;
+        font-size: 0.875rem;
       }
     }
 

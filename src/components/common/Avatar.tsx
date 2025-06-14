@@ -44,6 +44,8 @@ import Icon from './icons/Icon';
 
 import './Avatar.scss';
 
+import hexMask from '../../assets/hex.svg';
+
 const LOOP_COUNT = 3;
 
 export const AVATAR_SIZES = {
@@ -53,12 +55,12 @@ export const AVATAR_SIZES = {
   small: 2.125 * REM,
   medium: 2.75 * REM,
   large: 3.375 * REM,
+  xl: 4.5 * REM,
   giant: 5.625 * REM,
   jumbo: 7.5 * REM,
 };
 
-export type AvatarSize =
-  'micro' | 'mini' | 'tiny' | 'small' | 'medium' | 'large' | 'giant' | 'jumbo' | number;
+export type AvatarSize = keyof typeof AVATAR_SIZES | number;
 
 const cn = createClassNameBuilder('Avatar');
 cn.media = cn('media');
@@ -67,6 +69,7 @@ cn.icon = cn('icon');
 type OwnProps = {
   className?: string;
   size?: AvatarSize;
+  forceRoundedRect?: boolean;
   peer?: ApiPeer | CustomPeer;
   photo?: ApiPhoto;
   webPhoto?: ApiWebDocument;
@@ -93,6 +96,7 @@ type OwnProps = {
 const Avatar: FC<OwnProps> = ({
   className,
   size = 'large',
+  forceRoundedRect,
   peer,
   photo,
   webPhoto,
@@ -245,8 +249,11 @@ const Avatar: FC<OwnProps> = ({
     content = getFirstLetters(text, 2);
   }
 
-  const isRoundedRect = (isCustomPeer && peer.isAvatarSquare)
+  const isRoundedRect = forceRoundedRect || (isCustomPeer && peer.isAvatarSquare)
     || (isForum && !((withStory || withStorySolid) && realPeer?.hasStories));
+
+  const isHexagonalRect = isForum;
+
   const isPremiumGradient = isCustomPeer && peer.withPremiumGradient;
   const customColor = isCustomPeer && peer.customPeerAvatarColor;
 
@@ -260,7 +267,8 @@ const Avatar: FC<OwnProps> = ({
     isDeleted && 'deleted-account',
     isReplies && 'replies-bot-account',
     isPremiumGradient && 'premium-gradient-bg',
-    isRoundedRect && 'forum',
+    isRoundedRect && 'roundedRect',
+    isHexagonalRect && 'hex',
     (photo || webPhoto) && 'force-fit',
     ((withStory && realPeer?.hasStories) || forPremiumPromo) && 'with-story-circle',
     withStorySolid && realPeer?.hasStories && 'with-story-solid',
@@ -268,6 +276,12 @@ const Avatar: FC<OwnProps> = ({
     withStorySolid && (realPeer?.hasUnreadStories || forceUnreadStorySolid) && 'has-unread-story',
     onClick && 'interactive',
     (!isSavedMessages && !imgUrl) && 'no-photo',
+  );
+
+  const fullStyle = buildStyle(
+    `--_size: ${pxSize}px;`,
+    customColor && `--color-user: ${customColor}`,
+    isHexagonalRect && `mask-image: url(${hexMask})`,
   );
 
   const hasMedia = Boolean(isSavedMessages || imgUrl);
@@ -297,7 +311,7 @@ const Avatar: FC<OwnProps> = ({
       data-peer-id={realPeer?.id}
       data-test-sender-id={IS_TEST ? realPeer?.id : undefined}
       aria-label={typeof content === 'string' ? author : undefined}
-      style={buildStyle(`--_size: ${pxSize}px;`, customColor && `--color-user: ${customColor}`)}
+      style={fullStyle}
       onClick={handleClick}
       onContextMenu={onContextMenu}
       onMouseDown={handleMouseDown}

@@ -524,6 +524,7 @@ function MiddleColumn({
         style={customBackgroundValue ? `--custom-background: ${customBackgroundValue}` : undefined}
       />
       <div id="middle-column-portals" />
+      <div id="middle-column-left-sidebar-portals" style="height: 100%" />
       {Boolean(renderingChatId && renderingThreadId) && (
         <>
           <div className="messages-layout" onDragEnter={renderingCanPost ? handleDragEnter : undefined}>

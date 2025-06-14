@@ -84,7 +84,7 @@ export const MESSAGE_LIST_SLICE = isBigScreen ? 60 : 40;
 export const MESSAGE_LIST_VIEWPORT_LIMIT = MESSAGE_LIST_SLICE * 2;
 
 export const ARCHIVE_MINIMIZED_HEIGHT = 36;
-export const CHAT_HEIGHT_PX = 72;
+export const CHAT_HEIGHT_PX = 68;
 export const TOPIC_HEIGHT_PX = 65;
 export const PEER_PICKER_ITEM_HEIGHT_PX = 56;
 export const CHAT_LIST_SLICE = isBigScreen ? 30 : 25;
@@ -371,7 +371,7 @@ export const FRAGMENT_PHONE_CODE = '888';
 export const FRAGMENT_PHONE_LENGTH = 11;
 
 export const LIGHT_THEME_BG_COLOR = '#99BA92';
-export const DARK_THEME_BG_COLOR = '#0F0F0F';
+export const DARK_THEME_BG_COLOR = '#1E1E1E';
 export const DEFAULT_PATTERN_COLOR = '#4A8E3A8C';
 export const DARK_THEME_PATTERN_COLOR = '#0A0A0A8C';
 export const PEER_COLOR_BG_OPACITY = '1a';

@@ -2,12 +2,14 @@ import type { FC } from '../../../lib/teact/teact';
 import {
   memo, useEffect, useRef, useState,
 } from '../../../lib/teact/teact';
-import { getActions } from '../../../global';
+import { getActions, withGlobal } from '../../../global';
 
+import type { ApiWorkspace } from '../../../api/notlost/types';
 import type { FolderEditDispatch } from '../../../hooks/reducers/useFoldersReducer';
 import { LeftColumnContent } from '../../../types';
 
 import { PRODUCTION_URL } from '../../../config';
+import { selectActiveWorkspace } from '../../../global/selectors/workspace';
 import { IS_ELECTRON, IS_TOUCH_ENV } from '../../../util/browser/windowEnvironment';
 import buildClassName from '../../../util/buildClassName';
 
@@ -17,15 +19,21 @@ import useOldLang from '../../../hooks/useOldLang';
 import useShowTransitionDeprecated from '../../../hooks/useShowTransitionDeprecated';
 
 import Button from '../../ui/Button';
+import SearchInput from '../../ui/SearchInput';
 import Transition from '../../ui/Transition';
 import NewChatButton from '../NewChatButton';
 import LeftSearch from '../search/LeftSearch.async';
-import ChatFolders from './ChatFolders';
+import ChatList from './ChatList';
 import ContactList from './ContactList.async';
 import ForumPanel from './ForumPanel';
-import LeftMainHeader from './LeftMainHeader';
+import Workspace from './Workspace';
 
+// import LeftMainHeader from './LeftMainHeader';
 import './LeftMain.scss';
+
+type StateProps = {
+  activeWorkspace?: ApiWorkspace;
+};
 
 type OwnProps = {
   content: LeftColumnContent;
@@ -49,23 +57,24 @@ const BUTTON_CLOSE_DELAY_MS = 250;
 
 let closeTimeout: number | undefined;
 
-const LeftMain: FC<OwnProps> = ({
+const LeftMain: FC<OwnProps & StateProps> = ({
   content,
   searchQuery,
   searchDate,
-  isClosingSearch,
+  /* isClosingSearch, */
   contactsFilter,
   shouldSkipTransition,
-  foldersDispatch,
+  /* foldersDispatch, */
   isAppUpdateAvailable,
   isElectronUpdateAvailable,
   isForumPanelOpen,
-  onSearchQuery,
+  /* onSearchQuery, */
   onReset,
   onTopicSearch,
   isAccountFrozen,
+  activeWorkspace,
 }) => {
-  const { closeForumPanel, openLeftColumnContent } = getActions();
+  const { /* closeForumPanel */ openLeftColumnContent } = getActions();
   const [isNewChatButtonShown, setIsNewChatButtonShown] = useState(IS_TOUCH_ENV);
   const [isElectronAutoUpdateEnabled, setIsElectronAutoUpdateEnabled] = useState(false);
 
@@ -75,10 +84,10 @@ const LeftMain: FC<OwnProps> = ({
 
   const {
     shouldRenderForumPanel, handleForumPanelAnimationEnd,
-    handleForumPanelAnimationStart, isAnimationStarted,
+    handleForumPanelAnimationStart, /* isAnimationStarted */
   } = useForumPanelRender(isForumPanelOpen);
   const isForumPanelRendered = isForumPanelOpen && content === LeftColumnContent.ChatList;
-  const isForumPanelVisible = isForumPanelRendered && isAnimationStarted;
+  // const isForumPanelVisible = isForumPanelRendered && isAnimationStarted;
 
   const {
     shouldRender: shouldRenderUpdateButton,
@@ -110,18 +119,18 @@ const LeftMain: FC<OwnProps> = ({
     }, BUTTON_CLOSE_DELAY_MS);
   });
 
-  const handleSelectSettings = useLastCallback(() => {
+  /* const handleSelectSettings = useLastCallback(() => {
     openLeftColumnContent({ contentKey: LeftColumnContent.Settings });
-  });
+  }); */
 
   const handleSelectContacts = useLastCallback(() => {
     openLeftColumnContent({ contentKey: LeftColumnContent.Contacts });
   });
 
-  const handleSelectArchived = useLastCallback(() => {
+  /* const handleSelectArchived = useLastCallback(() => {
     openLeftColumnContent({ contentKey: LeftColumnContent.Archived });
     closeForumPanel();
-  });
+  }); */
 
   const handleUpdateClick = useLastCallback(() => {
     if (IS_ELECTRON && !isElectronAutoUpdateEnabled) {
@@ -167,7 +176,7 @@ const LeftMain: FC<OwnProps> = ({
       onMouseEnter={!IS_TOUCH_ENV ? handleMouseEnter : undefined}
       onMouseLeave={!IS_TOUCH_ENV ? handleMouseLeave : undefined}
     >
-      <LeftMainHeader
+      {/* <LeftMainHeader
         shouldHideSearch={isForumPanelVisible}
         content={content}
         contactsFilter={contactsFilter}
@@ -178,9 +187,9 @@ const LeftMain: FC<OwnProps> = ({
         onReset={onReset}
         shouldSkipTransition={shouldSkipTransition}
         isClosingSearch={isClosingSearch}
-      />
+      /> */}
       <Transition
-        name={shouldSkipTransition ? 'none' : 'zoomFade'}
+        name={shouldSkipTransition ? 'none' : 'none'}
         renderCount={TRANSITION_RENDER_COUNT}
         activeKey={content}
         shouldCleanup
@@ -190,13 +199,70 @@ const LeftMain: FC<OwnProps> = ({
       >
         {(isActive) => {
           switch (content) {
+            case LeftColumnContent.Workspace:
+              if (activeWorkspace) {
+                return <Workspace workspace={activeWorkspace} />;
+              }
+              return undefined;
             case LeftColumnContent.ChatList:
               return (
-                <ChatFolders
-                  shouldHideFolderTabs={isForumPanelVisible}
-                  foldersDispatch={foldersDispatch}
-                  isForumPanelOpen={isForumPanelVisible}
-                />
+                <div>
+                  <div style="padding: 0.5rem;">
+                    {/* eslint-disable-next-line react/jsx-no-bind */ }
+                    <SearchInput onChange={() => {}} />
+                  </div>
+                  <ChatList isActive folderType="all" />
+                </div>
+              );
+            case LeftColumnContent.Saved:
+              return (
+                <div style="height: 100%">
+                  <div style="padding: 0.5rem;">
+                    {/* eslint-disable-next-line react/jsx-no-bind */ }
+                    <SearchInput onChange={() => {}} />
+                  </div>
+                  <ChatList isActive folderType="saved" />
+                </div>
+              );
+            case LeftColumnContent.AllUnread:
+              return (
+                <div style="height: 100%">
+                  <div style="padding: 0.5rem;">
+                    {/* eslint-disable-next-line react/jsx-no-bind */ }
+                    <SearchInput onChange={() => {}} />
+                  </div>
+                  <ChatList isActive folderType="all" category="unread" />
+                </div>
+              );
+            case LeftColumnContent.Groups:
+              return (
+                <div style="height: 100%">
+                  <div style="padding: 0.5rem;">
+                    {/* eslint-disable-next-line react/jsx-no-bind */ }
+                    <SearchInput onChange={() => {}} />
+                  </div>
+                  <ChatList isActive folderType="all" category="groups" />
+                </div>
+              );
+            case LeftColumnContent.Channels:
+              return (
+                <div style="height: 100%">
+                  <div style="padding: 0.5rem;">
+                    {/* eslint-disable-next-line react/jsx-no-bind */ }
+                    <SearchInput onChange={() => {}} />
+                  </div>
+                  <ChatList isActive folderType="all" category="channels" />
+                </div>
+              );
+            case LeftColumnContent.Bots:
+              return (
+                <div style="height: 100%">
+                  <div style="padding: 0.5rem;">
+                    {/* eslint-disable-next-line react/jsx-no-bind */ }
+                    <SearchInput onChange={() => {}} />
+                  </div>
+                  <ChatList isActive folderType="all" category="bots" />
+                </div>
               );
             case LeftColumnContent.GlobalSearch:
               return (
@@ -244,4 +310,10 @@ const LeftMain: FC<OwnProps> = ({
   );
 };
 
-export default memo(LeftMain);
+export default memo(withGlobal(
+  (global): StateProps => {
+    return {
+      activeWorkspace: selectActiveWorkspace(global),
+    };
+  },
+)(LeftMain));

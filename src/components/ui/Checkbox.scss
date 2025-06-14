@@ -113,7 +113,7 @@
     }
 
     &::before {
-      border: 0.125rem solid var(--color-borders-input);
+      border: 0.0625rem solid var(--color-borders-input);
       border-radius: 0.25rem;
       background-color: var(--color-background);
       transition: border-color 0.1s ease, background-color 0.1s ease;

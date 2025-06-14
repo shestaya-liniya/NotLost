@@ -4,7 +4,8 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
 .header {
@@ -81,4 +82,18 @@
 
 .onlineStatus {
   color: var(--color-primary);
+}
+
+.topShadow {
+  position: absolute;
+  width: 100%;
+  top: -24px;
+  height: 20px;
+  box-shadow: none;
+  transition: box-shadow 0.2s ease;
+  z-index: 2;
+}
+
+.visibleShadow {
+  box-shadow: 0 10px 8px 5px var(--color-background);
 }

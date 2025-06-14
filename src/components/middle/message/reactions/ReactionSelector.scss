@@ -10,7 +10,6 @@
   &__bubble-small,
   &__items-wrapper {
     background: var(--color-background);
-    box-shadow: 0 0.25rem 0.125rem var(--color-default-shadow);
 
     body:not(.no-menu-blur) & {
       background: var(--color-background-compact-menu);

@@ -28,7 +28,7 @@ import useEnsureStory from '../../../../hooks/useEnsureStory';
 import useMedia from '../../../../hooks/useMedia';
 import useOldLang from '../../../../hooks/useOldLang';
 
-import ChatForumLastMessage from '../../../common/ChatForumLastMessage';
+// import ChatForumLastMessage from '../../../common/ChatForumLastMessage';
 import Icon from '../../../common/icons/Icon';
 import MessageSummary from '../../../common/MessageSummary';
 import TypingStatus from '../../../common/TypingStatus';
@@ -37,7 +37,7 @@ const ANIMATION_DURATION = 200;
 
 export default function useChatListEntry({
   chat,
-  topics,
+  /* topics, */
   lastMessage,
   statefulMediaContent,
   chatId,
@@ -139,7 +139,7 @@ export default function useChatListEntry({
   ]);
 
   function renderSubtitle() {
-    if (chat?.isForum && !isTopic) {
+    /* if (chat?.isForum && !isTopic) {
       return (
         <ChatForumLastMessage
           chat={chat}
@@ -148,7 +148,7 @@ export default function useChatListEntry({
           topics={topics}
         />
       );
-    }
+    } */
 
     return renderLastMessageOrTyping();
   }

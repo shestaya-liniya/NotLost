@@ -134,7 +134,8 @@
       transform-origin: left;
       transform: translateX(0);
       opacity: 1;
-      animation: fade-out-opacity var(--slide-transition), slide-fade-out-move var(--slide-transition);
+
+      animation: fade-out-opacity var(--slide-transition);
     }
 
     > .Transition_slide-to {
