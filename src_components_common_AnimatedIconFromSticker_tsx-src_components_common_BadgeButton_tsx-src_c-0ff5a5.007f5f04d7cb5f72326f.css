@@ -1,0 +1,1377 @@
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/FakeIcon.scss ***!
+  \****************************************************************************************************************************************************************************************************/
+.FakeIcon {
+  margin-inline: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  border: 1px solid var(--color-error);
+  border-radius: 0.375rem;
+  font-size: 0.625rem;
+  font-weight: var(--font-weight-medium);
+  line-height: initial;
+  color: var(--color-error);
+  text-transform: capitalize;
+}
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/VerifiedIcon.scss ***!
+  \********************************************************************************************************************************************************************************************************/
+.VerifiedIcon {
+  --color-fill: var(--color-primary);
+  --color-checkmark: #fff;
+  --color-fill: var(--color-primary);
+  --color-checkmark: #fff;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/FullNameTitle.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************/
+.FullNameTitle-module__root {
+  display: flex !important;
+  gap: 0.25rem;
+  align-items: center;
+}
+.FullNameTitle-module__root .custom-emoji {
+  color: var(--color-primary);
+}
+.FullNameTitle-module__root .statusSparkles {
+  color: var(--accent-color);
+}
+.selected .FullNameTitle-module__root .statusSparkles {
+  color: white;
+}
+.FullNameTitle-module__root .FullNameTitle-module__statusTransition {
+  width: 1.5em !important;
+  height: 1.5em !important;
+}
+
+.FullNameTitle-module__fullName {
+  overflow: hidden;
+  margin-bottom: 0;
+  font-size: 1em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.FullNameTitle-module__fullName.FullNameTitle-module__canCopy {
+  pointer-events: all;
+}
+
+.FullNameTitle-module__statusTransitionSlide {
+  display: flex;
+  align-items: center;
+}
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/PeerChip.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************/
+.PeerChip-module__root {
+  cursor: var(--custom-cursor, pointer);
+  position: relative;
+  display: flex;
+  flex-shrink: 1;
+  align-items: center;
+  min-width: 0;
+  height: 2rem;
+  margin-inline: 0.25rem;
+  padding-right: 0.75rem;
+  border-radius: 1rem;
+  background: var(--color-chat-hover);
+  transition: background-color 0.15s ease;
+}
+.PeerChip-module__root.PeerChip-module__minimized {
+  padding-right: 0;
+}
+.PeerChip-module__root:hover {
+  background-color: var(--color-item-active);
+}
+.PeerChip-module__root.PeerChip-module__closeable:hover {
+  background-color: rgba(var(--color-error-rgb), 0.16);
+}
+.PeerChip-module__root.PeerChip-module__closeable:hover .PeerChip-module__remove {
+  opacity: 1;
+}
+.PeerChip-module__root.PeerChip-module__nonDestructive .PeerChip-module__remove {
+  background: var(--color-primary);
+}
+.PeerChip-module__root.PeerChip-module__nonDestructive:hover {
+  background: var(--color-chat-hover);
+}
+.PeerChip-module__root.PeerChip-module__notClickable {
+  cursor: default;
+}
+.PeerChip-module__root .PeerChip-module__avatar,
+.PeerChip-module__root .PeerChip-module__iconWrapper {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  opacity: 1;
+  transition: opacity 0.15s ease;
+}
+.PeerChip-module__root .PeerChip-module__iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem;
+  border-radius: 50%;
+  color: white;
+  background-color: var(--color-primary);
+}
+.PeerChip-module__root .PeerChip-module__iconWrapper .PeerChip-module__icon {
+  position: relative;
+  top: -1px;
+  font-size: 1.25rem;
+}
+.PeerChip-module__root .PeerChip-module__name {
+  min-width: 0;
+  margin-left: 0.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.PeerChip-module__root .PeerChip-module__name .emoji.emoji-small {
+  width: 1.125rem;
+  height: 1.125rem;
+  vertical-align: -4px;
+  background-size: 1.125rem;
+}
+.PeerChip-module__root .PeerChip-module__remove {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: white;
+  opacity: 0;
+  background-color: var(--color-error);
+  transition: opacity 0.15s ease;
+}
+.PeerChip-module__root.PeerChip-module__squareAvatar {
+  --border-radius-forum-avatar: 0.625rem;
+  border-start-start-radius: 0.625rem;
+  border-end-start-radius: 0.625rem;
+}
+.PeerChip-module__root.PeerChip-module__squareAvatar.PeerChip-module__minimized, .PeerChip-module__root.PeerChip-module__squareAvatar .PeerChip-module__remove {
+  border-radius: 0.625rem;
+}
+.PeerChip-module__root[dir=rtl] {
+  padding-right: 0;
+  padding-left: 1rem;
+}
+.PeerChip-module__root[dir=rtl].PeerChip-module__minimized {
+  padding-right: 0;
+  padding-left: 0;
+}
+.PeerChip-module__root[dir=rtl] .PeerChip-module__name {
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+.PeerChip-module__root[dir=rtl] .PeerChip-module__remove {
+  right: 0;
+  left: auto;
+}
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/pickers/PickerItem.module.scss ***!
+  \*********************************************************************************************************************************************************************************************************************/
+.PickerItem-module__root {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: min-content min-content 1fr min-content;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  padding-left: 0.5rem;
+  border-radius: var(--border-radius-default);
+  line-height: 1.25;
+  color: var(--color-text);
+  text-align: initial;
+  background-color: var(--background-color);
+  transition-duration: 150ms;
+  transition-property: background-color, opacity;
+}
+body.is-ios .PickerItem-module__root, body.is-android .PickerItem-module__root {
+  padding-inline-start: 0.75rem;
+  border-radius: 0;
+}
+body.is-ios .PickerItem-module__root {
+  padding-inline-end: 0;
+}
+@media (max-width: 600px) {
+  .PickerItem-module__root {
+    padding-inline-start: 0.5rem !important;
+    border-radius: 0;
+  }
+}
+
+.PickerItem-module__clickable {
+  cursor: var(--custom-cursor, pointer);
+}
+@media (hover: hover) {
+  .PickerItem-module__clickable:hover, .PickerItem-module__clickable:focus-visible {
+    background-color: var(--color-item-hover);
+  }
+}
+
+.PickerItem-module__separator {
+  grid-column: 3;
+  grid-row: 2;
+  align-self: end;
+  /* stylelint-disable-next-line plugin/whole-pixel */
+  height: 0.5px;
+  margin-bottom: -0.1875rem;
+  background-color: var(--color-dividers);
+}
+
+.PickerItem-module__disabled {
+  cursor: unset;
+  opacity: 0.5;
+}
+
+.PickerItem-module__title {
+  grid-column: 3;
+  grid-row: 1/3;
+  font-size: 0.875rem;
+}
+
+.PickerItem-module__subtitle {
+  grid-column: 3;
+  grid-row: 2;
+  padding-bottom: 0.3125rem;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.PickerItem-module__title, .PickerItem-module__subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.PickerItem-module__multiline .PickerItem-module__title {
+  grid-row: 1;
+  align-self: end;
+}
+
+.PickerItem-module__input {
+  padding-inline: 0.75rem;
+}
+
+.PickerItem-module__startInput {
+  grid-column: 1;
+  grid-row: 1/3;
+  margin-inline-end: 1.1875rem;
+}
+
+.PickerItem-module__endInput {
+  grid-column: 4;
+  grid-row: 1/3;
+  margin-inline-start: 1.25rem;
+}
+
+.PickerItem-module__avatarElement {
+  grid-column: 2;
+  grid-row: 1/3;
+  margin-inline-end: 0.75rem;
+}
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/pickers/PickerStyles.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************/
+.PickerStyles-module__container {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.PickerStyles-module__header {
+  overflow-y: auto;
+  display: flex;
+  flex-flow: row wrap;
+  flex-shrink: 0;
+  max-height: 20rem;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--color-borders);
+}
+.PickerStyles-module__header .input-group {
+  flex-grow: 1;
+  margin-bottom: 0;
+}
+.PickerStyles-module__header .form-control {
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none !important;
+}
+
+.PickerStyles-module__pickerCategoryTitle {
+  margin-bottom: 0.5rem;
+  padding-inline: 0.5rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+.PickerStyles-module__pickerCategoryTitle:not(:first-child) {
+  margin-top: 0.375rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-borders);
+}
+
+.PickerStyles-module__peerChip {
+  max-width: calc(50% - 0.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.PickerStyles-module__pickerList {
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.PickerStyles-module__padded {
+  scrollbar-gutter: stable;
+  padding: 0.5rem;
+  padding-inline-end: calc(0.5rem - var(--scrollbar-width));
+}
+@media (max-width: 600px) {
+  .PickerStyles-module__padded {
+    padding-inline: 0;
+  }
+}
+
+.PickerStyles-module__noResults {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
+  padding: 1rem 1rem;
+  color: var(--color-text-secondary);
+}
+
+.PickerStyles-module__onlineStatus {
+  color: var(--color-primary);
+}
+
+.PickerStyles-module__topShadow {
+  position: absolute;
+  z-index: 2;
+  top: -24px;
+  width: 100%;
+  height: 20px;
+  box-shadow: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.PickerStyles-module__visibleShadow {
+  box-shadow: 0 10px 8px 5px var(--color-background);
+}
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/MediaSpoiler.module.scss ***!
+  \***************************************************************************************************************************************************************************************************************/
+.MediaSpoiler-module__root {
+  --click-shift-x: 0px;
+  --click-shift-y: 0px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-text-secondary);
+}
+
+.MediaSpoiler-module__mask-animation.closing {
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  -webkit-mask-image: url(mask.c474db1e76529489b940.svg), linear-gradient(#ffffff, #ffffff);
+          mask-image: url(mask.c474db1e76529489b940.svg), linear-gradient(#ffffff, #ffffff);
+  -webkit-mask-position: calc(50% + var(--click-shift-x)) calc(50% + var(--click-shift-y)), center center;
+          mask-position: calc(50% + var(--click-shift-x)) calc(50% + var(--click-shift-y)), center center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: 0%;
+          mask-size: 0%;
+}
+body:not(.no-page-transitions) .MediaSpoiler-module__mask-animation.closing {
+  animation: 500ms ease-in MediaSpoiler-module__circle-cut forwards;
+}
+.MediaSpoiler-module__mask-animation.closing .MediaSpoiler-module__dots {
+  transform: scale(1.2);
+}
+
+.MediaSpoiler-module__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.MediaSpoiler-module__dots {
+  --x-direction: var(--background-size);
+  --y-direction: 0;
+  --background-url: url(turbulence_1x.29559632f446607390d2.png);
+  --background-size: 256px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: calc(50% + var(--click-shift-x)) calc(50% + var(--click-shift-y));
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25) var(--background-url);
+  background-size: var(--background-size) var(--background-size);
+  transition: transform 500ms ease-in;
+}
+.MediaSpoiler-module__dots::before {
+  --x-direction: 0;
+  --y-direction: var(--background-size);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--background-url);
+  background-position: calc(var(--x-direction) / 2) calc(var(--y-direction) / 2);
+  background-size: var(--background-size) var(--background-size);
+  animation: 2s linear -0.8s infinite MediaSpoiler-module__opacity-breath;
+}
+.MediaSpoiler-module__dots::after {
+  --x-direction: calc(-1 * var(--background-size));
+  --y-direction: calc(-1 * var(--background-size));
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--background-url);
+  background-position: calc(var(--x-direction) / 2) calc(var(--y-direction) / 2);
+  background-size: var(--background-size) var(--background-size);
+  animation: 2s linear -1.5s infinite MediaSpoiler-module__opacity-breath;
+}
+@media (-webkit-min-device-pixel-ratio: 2) {
+  .MediaSpoiler-module__dots {
+    --background-url: url(turbulence_2x.e41db87f55d18f1c8d43.png);
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 3) {
+  .MediaSpoiler-module__dots {
+    --background-url: url(turbulence_3x.6570f80327858cc09a2b.png);
+  }
+}
+
+body:not(.no-page-transitions) .MediaSpoiler-module__dots {
+  animation: 20s linear infinite;
+  animation-name: MediaSpoiler-module__dots-animation;
+}
+body:not(.no-page-transitions) .MediaSpoiler-module__dots::before {
+  animation: 21s linear -7s infinite;
+  animation-name: MediaSpoiler-module__dots-animation;
+}
+body:not(.no-page-transitions) .MediaSpoiler-module__dots::after {
+  animation: 22s linear -14s infinite;
+  animation-name: MediaSpoiler-module__dots-animation;
+}
+
+@keyframes MediaSpoiler-module__dots-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: var(--x-direction) var(--y-direction);
+  }
+}
+@keyframes MediaSpoiler-module__circle-cut {
+  0% {
+    -webkit-mask-size: 0%, 100%;
+            mask-size: 0%, 100%;
+  }
+  100% {
+    -webkit-mask-size: 350%, 100%;
+            mask-size: 350%, 100%;
+  }
+}
+@keyframes MediaSpoiler-module__opacity-breath {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/AnimatedCounter.module.scss ***!
+  \******************************************************************************************************************************************************************************************************************/
+.AnimatedCounter-module__root {
+  display: inline-flex;
+  white-space: pre;
+}
+.AnimatedCounter-module__root[dir=rtl] {
+  flex-direction: row-reverse;
+}
+
+.AnimatedCounter-module__character-container {
+  position: relative;
+}
+
+@keyframes AnimatedCounter-module__character-disappear {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: perspective(10px) translateY(10px) rotateX(-30deg);
+    opacity: 0;
+  }
+}
+@keyframes AnimatedCounter-module__character-appear {
+  from {
+    transform: perspective(10px) translateY(-10px) rotateX(30deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.AnimatedCounter-module__character {
+  white-space: pre;
+  visibility: hidden;
+}
+
+.AnimatedCounter-module__character-old {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: 200ms ease-out AnimatedCounter-module__character-disappear forwards;
+}
+
+.AnimatedCounter-module__character-new {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: 200ms ease-out AnimatedCounter-module__character-appear forwards;
+}
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/AnimatedIconWithPreview.module.scss ***!
+  \**************************************************************************************************************************************************************************************************************************/
+.AnimatedIconWithPreview-module__root {
+  position: relative;
+  display: block !important;
+}
+.AnimatedIconWithPreview-module__root .AnimatedSticker.not-shown {
+  display: block;
+}
+
+.AnimatedIconWithPreview-module__preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.AnimatedIconWithPreview-module__preview.closing {
+  transition-delay: 50ms;
+}
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/AvatarList.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************/
+.AvatarList-module__root {
+  --_size: 0px;
+  --half-size: calc(var(--_size) / 2);
+  --spacing: calc(var(--_size) * 0.4);
+  --spacing-gap: calc(var(--_size) * 0.04);
+  position: relative;
+  display: flex;
+}
+
+.AvatarList-module__avatar {
+  --radius: calc(var(--half-size) + var(--spacing-gap));
+  margin-inline-start: calc(var(--spacing-gap) - var(--spacing));
+  -webkit-mask: radial-gradient(circle var(--radius) at var(--offset) 50%, transparent 99%, #fff 100%);
+          mask: radial-gradient(circle var(--radius) at var(--offset) 50%, transparent 99%, #fff 100%);
+}
+.AvatarList-module__avatar:first-child {
+  margin-inline-start: 0;
+  -webkit-mask: none;
+          mask: none;
+}
+
+.AvatarList-module__root[dir=ltr] .AvatarList-module__avatar {
+  --offset: calc(0% - var(--half-size) + var(--spacing));
+}
+
+.AvatarList-module__root[dir=rtl] .AvatarList-module__avatar {
+  --offset: calc(100% + var(--half-size) - var(--spacing));
+}
+
+.AvatarList-module__badge {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  padding: 0rem 0.25rem;
+  border: 1px solid var(--color-background);
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1rem;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/reactions/CustomEmojiEffect.module.scss ***!
+  \******************************************************************************************************************************************************************************************************************************/
+.CustomEmojiEffect-module__root {
+  position: absolute;
+  z-index: 10;
+}
+
+.CustomEmojiEffect-module__particle {
+  --custom-emoji-size: var(--particle-size, 1rem);
+  position: absolute;
+  offset-path: var(--offset-path);
+  offset-rotate: 0deg;
+  width: var(--particle-size, 1rem);
+  height: var(--particle-size, 1rem);
+  border-radius: 0.25rem;
+  color: var(--color-primary);
+  animation: 1.5s CustomEmojiEffect-module__particle ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes CustomEmojiEffect-module__particle {
+  0% {
+    transform: scale(1);
+    offset-distance: 0%;
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/reactions/ReactionStaticEmoji.scss ***!
+  \*************************************************************************************************************************************************************************************************************************/
+.ReactionStaticEmoji {
+  display: block;
+  width: 1rem;
+}
+.ReactionStaticEmoji.with-unicorn-fix {
+  transform: scale(2);
+}
+.ReactionStaticEmoji.icon-heart {
+  margin: 0 !important;
+  color: var(--color-heart) !important;
+}
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/reactions/ReactionAnimatedEmoji.module.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+.ReactionAnimatedEmoji-module__root {
+  --custom-emoji-border-radius: 0.25rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--custom-emoji-size);
+  height: var(--custom-emoji-size);
+}
+
+.ReactionAnimatedEmoji-module__animated-icon, .ReactionAnimatedEmoji-module__effect {
+  pointer-events: none;
+}
+.ReactionAnimatedEmoji-module__animated-icon:not(.open), .ReactionAnimatedEmoji-module__effect:not(.open) {
+  opacity: 1 !important;
+}
+.ReactionAnimatedEmoji-module__animated-icon.closing, .ReactionAnimatedEmoji-module__effect.closing {
+  opacity: 0 !important;
+}
+
+.ReactionAnimatedEmoji-module__animating {
+  transform: translateZ(0);
+  contain: layout;
+}
+
+.ReactionAnimatedEmoji-module__withEffectOnly, .ReactionAnimatedEmoji-module__animated-icon, .ReactionAnimatedEmoji-module__effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/profile/RadialPatternBackground.module.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+.RadialPatternBackground-module__root {
+  overflow: hidden;
+  border-radius: inherit;
+}
+.RadialPatternBackground-module__root::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.1960784314), rgba(255, 255, 255, 0)), radial-gradient(closest-side, var(--_bg-1), var(--_bg-2));
+}
+
+.RadialPatternBackground-module__canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/middle/message/reactions/ReactionSelectorReaction.module.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+.ReactionSelectorReaction-module__root {
+  --custom-emoji-size: 2rem;
+  position: relative;
+  min-width: 2rem;
+  min-height: 2rem;
+  margin-inline-start: 0.25rem;
+}
+.ReactionSelectorReaction-module__root:first-child {
+  margin-inline-start: 0;
+}
+.ReactionSelectorReaction-module__root .AnimatedSticker {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ReactionSelectorReaction-module__custom {
+  opacity: 0;
+}
+
+.ReactionSelectorReaction-module__visible {
+  opacity: 1;
+}
+
+.ReactionSelectorReaction-module__custom-animated {
+  animation: ReactionSelectorReaction-module__custom-fade-in 0.2s ease-in-out forwards;
+  animation-delay: var(--_animation-delay);
+}
+
+.ReactionSelectorReaction-module__chosen::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: var(--color-background-compact-menu-hover);
+}
+
+.ReactionSelectorReaction-module__static-icon {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+}
+
+.ReactionSelectorReaction-module__lock {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 0.125rem;
+  border-radius: 50%;
+  font-size: 0.875rem;
+  background-color: var(--color-background-compact-menu);
+}
+
+@keyframes ReactionSelectorReaction-module__custom-fade-in {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/middle/message/reactions/ReactionSelector.scss ***!
+  \******************************************************************************************************************************************************************************************************************************/
+.ReactionSelector {
+  position: relative;
+  top: -0.5rem;
+  right: 0;
+  min-width: 3rem;
+  max-width: fit-content;
+}
+.ReactionSelector__bubble-big, .ReactionSelector__bubble-small, .ReactionSelector__items-wrapper {
+  background: var(--color-background);
+}
+body:not(.no-menu-blur) .ReactionSelector__bubble-big, body:not(.no-menu-blur) .ReactionSelector__bubble-small, body:not(.no-menu-blur) .ReactionSelector__items-wrapper {
+  background: var(--color-background-compact-menu);
+  -webkit-backdrop-filter: blur(25px);
+          backdrop-filter: blur(25px);
+}
+.ReactionSelector__bubble-big {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: 1.125rem;
+  bottom: -0.5rem;
+  display: block;
+  width: 1rem;
+  height: 0.5rem;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0 0 1rem 1rem;
+}
+.ReactionSelector__bubble-big--isRtl {
+  right: auto;
+  left: 1.5rem;
+}
+@media (max-width: 600px) {
+  .ReactionSelector__bubble-big {
+    display: none;
+  }
+}
+.ReactionSelector__bubble-small {
+  content: "";
+  position: absolute;
+  right: 1.125rem;
+  bottom: -1.25rem;
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+.ReactionSelector__bubble-small--isRtl {
+  right: auto;
+  left: 2.125rem;
+}
+@media (max-width: 600px) {
+  .ReactionSelector__bubble-small {
+    display: none;
+  }
+}
+.ReactionSelector__items-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.25rem;
+}
+@media (max-width: 600px) {
+  .ReactionSelector__items-wrapper {
+    width: fit-content;
+  }
+}
+.ReactionSelector__items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ReactionSelector__hint {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  text-wrap: balance;
+}
+.ReactionSelector__reactions {
+  cursor: var(--custom-cursor, pointer);
+  display: flex;
+  align-items: center;
+  height: 2.5rem;
+  padding: 0 0.5rem;
+}
+.ReactionSelector__show-more {
+  width: 2rem;
+  height: 2rem;
+  margin-inline-start: 0.25rem;
+  margin-inline-end: -0.125rem;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 1.5rem;
+}
+@media (max-width: 600px) {
+  .ReactionSelector {
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/middle/message/TimeMenuItem.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************/
+.MenuItem.TimeMenuItem-module__item {
+  --color-skeleton-background: #2121211a;
+  pointer-events: none;
+  cursor: var(--custom-cursor, default);
+  margin-bottom: 0;
+  font-size: 0.8125rem;
+  font-weight: var(--font-weight-normal);
+}
+.MenuItem.TimeMenuItem-module__item:hover, .MenuItem.TimeMenuItem-module__item:focus, .MenuItem.TimeMenuItem-module__item:active {
+  background: none;
+}
+.MenuItem.TimeMenuItem-module__item .icon {
+  margin-inline-end: 0.25rem;
+}
+
+.TimeMenuItem-module__get {
+  pointer-events: all;
+  cursor: var(--custom-cursor, pointer);
+  margin-inline-start: 0.375rem;
+  padding: 0.1875rem 0.375rem;
+  border-radius: 1rem;
+  font-size: 0.6875rem;
+  font-weight: var(--font-weight-medium);
+  background: var(--color-background-menu-separator);
+  filter: opacity(0.8);
+  transition: 150ms filter ease-in;
+}
+.TimeMenuItem-module__get:hover {
+  filter: brightness(1.1);
+}
+
+.TimeMenuItem-module__skeleton {
+  width: calc(100% - 2rem);
+  height: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 0.25rem;
+}
+
+.TimeMenuItem-module__transition {
+  width: auto;
+  height: 1.5rem;
+}
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/middle/message/MessageContextMenu.scss ***!
+  \**********************************************************************************************************************************************************************************************************************/
+.MessageContextMenu {
+  -webkit-user-select: none;
+          user-select: none;
+  position: absolute;
+  font-size: 1rem;
+}
+.MessageContextMenu_items {
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 0.5rem 0;
+}
+.MessageContextMenu_items-hidden {
+  opacity: 0;
+  transition: 300ms opacity;
+}
+.MessageContextMenu.compact .MessageContextMenu_items {
+  padding: 0.25rem 0;
+}
+.MessageContextMenu .bubble {
+  overflow: initial;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+}
+.MessageContextMenu.with-reactions .bubble {
+  background: none !important;
+  -webkit-backdrop-filter: none !important;
+          backdrop-filter: none !important;
+  box-shadow: none;
+}
+.MessageContextMenu.with-reactions .MessageContextMenu_items {
+  padding: 0.25rem 0;
+  border-radius: var(--border-radius-default);
+  background: var(--color-background-compact-menu);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 0 0.25rem 0.5rem 0.125rem var(--color-default-shadow);
+}
+body.no-menu-blur .MessageContextMenu.with-reactions .MessageContextMenu_items {
+  background: var(--color-background);
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+}
+@media (min-width: 600px) {
+  .MessageContextMenu.with-reactions .MessageContextMenu_items {
+    margin-inline-end: 2.75rem;
+  }
+}
+.MessageContextMenu .backdrop {
+  touch-action: none;
+}
+.MessageContextMenu--seen-by-label-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+.MessageContextMenu--seen-by-label {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  transform: translateY(-50%);
+  overflow: hidden;
+  text-align: initial;
+  text-overflow: ellipsis;
+}
+.MessageContextMenu .avatars {
+  padding-inline-start: 1rem;
+}
+.MessageContextMenu .ReactionSelector {
+  position: absolute;
+  top: 0;
+  transform: translateY(calc(-100% - 0.5rem));
+}
+
+.ReactionSelector-hidden {
+  opacity: 0;
+  transition: 300ms opacity;
+}
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/middle/message/reactions/ReactionButton.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+.ReactionButton-module__root.ReactionButton-module__root {
+  --custom-emoji-size: 1.25rem;
+  --reaction-background: var(--color-reaction);
+  --reaction-background-hover: var(--hover-color-reaction);
+  --reaction-text-color: var(--text-color-reaction);
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  display: flex;
+  flex-direction: row;
+  gap: 0.125rem;
+  width: auto;
+  height: 1.875rem;
+  padding: 0 0.375rem 0 0.25rem;
+  border-radius: 1.75rem;
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.75rem;
+  color: var(--reaction-text-color);
+  text-transform: none;
+  white-space: nowrap;
+  background-color: var(--reaction-background) !important;
+  transition: background-color 150ms, color 150ms, filter 150ms, -webkit-backdrop-filter 150ms !important;
+  transition: background-color 150ms, color 150ms, backdrop-filter 150ms, filter 150ms !important;
+  transition: background-color 150ms, color 150ms, backdrop-filter 150ms, filter 150ms, -webkit-backdrop-filter 150ms !important;
+}
+.ReactionButton-module__root.ReactionButton-module__root.ReactionButton-module__chosen {
+  --reaction-background: var(--color-reaction-chosen);
+  --reaction-background-hover: var(--hover-color-reaction-chosen);
+  --reaction-text-color: var(--text-color-reaction-chosen);
+}
+.ReactionButton-module__root.ReactionButton-module__root.ReactionButton-module__paid {
+  --reaction-background: #FFBC2E33 !important;
+  --reaction-background-hover: #FFBC2E55 !important;
+  --reaction-text-color: #E98111 !important;
+  z-index: 2;
+}
+.ReactionButton-module__root.ReactionButton-module__root.ReactionButton-module__paid.ReactionButton-module__outside {
+  --reaction-text-color: #FFFFFF !important;
+  --reaction-background: #FFBC2E77 !important;
+  --reaction-background-hover: #FFBC2E99 !important;
+}
+.ReactionButton-module__root.ReactionButton-module__root.ReactionButton-module__paid.ReactionButton-module__chosen {
+  --reaction-background: #FFB727 !important;
+  --reaction-background-hover: #FFB727CC !important;
+  --reaction-text-color: #FFFFFF !important;
+}
+.ReactionButton-module__root.ReactionButton-module__root:hover {
+  --reaction-background: var(--reaction-background-hover) !important;
+  -webkit-backdrop-filter: var(--reaction-background-hover-filter);
+          backdrop-filter: var(--reaction-background-hover-filter);
+}
+@supports not ((-webkit-backdrop-filter: var(--reaction-background-hover-filter)) or (backdrop-filter: var(--reaction-background-hover-filter))) {
+  .ReactionButton-module__root.ReactionButton-module__root:hover {
+    filter: var(--reaction-background-hover-filter);
+  }
+}
+
+.ReactionButton-module__animated-emoji {
+  margin: 0.25rem;
+}
+
+.ReactionButton-module__tag.ReactionButton-module__tag {
+  position: relative;
+  justify-content: start;
+  margin-right: 1rem;
+  padding-inline: 0;
+  border-radius: 0.375rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.ReactionButton-module__tag.ReactionButton-module__tag::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -0.5rem;
+  transform: translateY(-50%);
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  opacity: 0.4;
+  background-color: var(--text-color-reaction-chosen);
+}
+.ReactionButton-module__tag.ReactionButton-module__tag:hover {
+  filter: var(--reaction-background-hover-filter);
+  -webkit-backdrop-filter: unset;
+          backdrop-filter: unset;
+}
+.ReactionButton-module__tag.ReactionButton-module__tag .ReactionButton-module__animated-emoji {
+  margin: 0.25rem 0 0.25rem 0.25rem;
+}
+
+.ReactionButton-module__tail {
+  position: absolute;
+  z-index: -1;
+  right: -0.9375rem;
+  height: 100%;
+}
+.ReactionButton-module__is-safari .ReactionButton-module__tail {
+  /* stylelint-disable-next-line plugin/whole-pixel */
+  right: -14.8px;
+}
+
+.ReactionButton-module__tail-fill {
+  fill: var(--reaction-background);
+  transition: fill 150ms;
+}
+
+.ReactionButton-module__tag-text {
+  display: flex;
+  gap: 0.25rem;
+  margin-inline-end: 0.375rem;
+  font-size: 1rem;
+}
+
+.ReactionButton-module__counter {
+  margin-inline-end: 0.125rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.ReactionButton-module__disabled {
+  opacity: 0.5;
+}
+
+.ReactionButton-module__paidCounter {
+  position: absolute;
+  z-index: 1;
+  top: -150%;
+  right: 50%;
+  transform: translateX(50%);
+  font-family: var(--font-family-rounded);
+  font-size: 2.5rem;
+  font-variant-numeric: tabular-nums;
+  color: #FFBC2E;
+  -webkit-text-stroke: 1px #E58E0D;
+}
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/modals/prompt/PromptDialog.module.scss ***!
+  \**********************************************************************************************************************************************************************************************************************/
+.PromptDialog-module__subtitle {
+  margin-bottom: 1rem;
+}
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/middle/message/reactions/Reactions.scss ***!
+  \***********************************************************************************************************************************************************************************************************************/
+.Reactions {
+  overflow: visible;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  width: 100%;
+  max-width: calc(var(--max-width) + 2.25rem);
+  margin-top: 0.25rem;
+  margin-bottom: 0.1875rem;
+}
+.Reactions.is-outside {
+  margin-top: 0.25rem;
+}
+.is-forwarded.is-inverted-media .Reactions {
+  margin-top: 0.5rem;
+  margin-bottom: 0.125rem;
+}
+.Reactions.is-service {
+  justify-content: center;
+  max-width: 19rem;
+  margin-top: 0.3125rem;
+}
+.own .Reactions.is-outside {
+  flex-direction: row-reverse;
+}
+.theme-light .Reactions.is-outside .message-reaction {
+  --reaction-background: var(--pattern-color);
+  --reaction-background-hover: var(--pattern-color);
+  --reaction-background-hover-filter: brightness(115%);
+  --reaction-text-color: white;
+}
+.theme-light .Reactions.is-outside .message-reaction.chosen {
+  --reaction-background: rgb(255, 255, 255, 0.6);
+  --reaction-background-hover: rgb(255, 255, 255, 0.75);
+  --reaction-text-color: rgb(62 62 62);
+}
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/BadgeButton.module.scss ***!
+  \**************************************************************************************************************************************************************************************************************/
+.BadgeButton-module__root {
+  padding: 0.25em 0.5em;
+  border-radius: 1em;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--accent-color);
+  background-color: var(--accent-background-active-color);
+  filter: brightness(1);
+  transition: 150ms filter ease-in;
+}
+
+.BadgeButton-module__clickable {
+  cursor: var(--custom-cursor, pointer);
+}
+.BadgeButton-module__clickable:hover {
+  filter: brightness(1.1);
+}
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/PremiumProgress.module.scss ***!
+  \******************************************************************************************************************************************************************************************************************/
+.PremiumProgress-module__root {
+  --percent: calc(var(--progress, 0.5) * 100%);
+  position: relative;
+  display: flex;
+  height: 2rem;
+  border-radius: 0.625rem;
+  background: var(--color-background-menu-separator);
+}
+
+.PremiumProgress-module__withBadge {
+  margin-top: 3rem;
+}
+
+.PremiumProgress-module__badgeContainer {
+  position: absolute;
+  top: -1.5rem;
+  right: 0;
+  left: 0;
+  transform: translate(calc(var(--shift-x) * 100% - 50%), -20px);
+  display: flex;
+  justify-content: center;
+  transition: transform 0.2s ease-in-out;
+  animation: PremiumProgress-module__slide-in 0.5s ease-in-out;
+}
+
+@keyframes PremiumProgress-module__slide-in {
+  from {
+    transform: translate(-50%, -20px);
+  }
+  to {
+    transform: translate(calc(var(--shift-x) * 100% - 50%), -20px);
+  }
+}
+.PremiumProgress-module__floating-badge-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 2.6875rem;
+  border-radius: 0.5rem;
+  animation: PremiumProgress-module__rotate-in 0.5s ease-in-out;
+}
+
+@keyframes PremiumProgress-module__rotate-in {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(calc(-20deg * var(--progress)));
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.PremiumProgress-module__floating-badge {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  color: #ffffff;
+  background-color: #7E85FF;
+}
+
+.PremiumProgress-module__floating-badge-triangle {
+  position: absolute;
+  bottom: -4px;
+  left: calc(var(--tail-position, 0.5) * 100%);
+  transform: translateX(-50%);
+  display: inline-block;
+}
+
+.PremiumProgress-module__floating-badge-icon {
+  margin-right: 0.25rem;
+  font-size: 1.25rem;
+}
+
+.PremiumProgress-module__floating-badge-value {
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+}
+
+.PremiumProgress-module__left, .PremiumProgress-module__right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-weight: var(--font-weight-medium);
+}
+
+.PremiumProgress-module__left {
+  left: 0.75rem;
+}
+
+.PremiumProgress-module__right {
+  right: 0.75rem;
+}
+
+.PremiumProgress-module__progress {
+  --multiplier: calc(1 / var(--progress) - 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  width: max(var(--percent), 0.625rem);
+  border-top-left-radius: 0.625rem;
+  border-bottom-left-radius: 0.625rem;
+  background-image: var(--premium-gradient);
+  background-size: calc(1 / var(--progress) * 100%) 100%;
+}
+.PremiumProgress-module__progress .PremiumProgress-module__left, .PremiumProgress-module__progress .PremiumProgress-module__right {
+  color: white;
+  white-space: nowrap;
+}
+.PremiumProgress-module__progress .PremiumProgress-module__right {
+  right: calc(-100% * var(--multiplier) + 0.75rem);
+}
+
+.PremiumProgress-module__fullProgress {
+  border-radius: 0.625rem;
+}
+
+.PremiumProgress-module__primary .PremiumProgress-module__progress {
+  background-color: var(--color-primary);
+  background-image: none;
+}
+.PremiumProgress-module__primary .PremiumProgress-module__floating-badge {
+  background-color: var(--color-primary);
+}
+
+/*# sourceMappingURL=src_components_common_AnimatedIconFromSticker_tsx-src_components_common_BadgeButton_tsx-src_c-0ff5a5.007f5f04d7cb5f72326f.css.map*/

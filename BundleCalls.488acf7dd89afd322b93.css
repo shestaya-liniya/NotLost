@@ -1,0 +1,995 @@
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/FakeIcon.scss ***!
+  \****************************************************************************************************************************************************************************************************/
+.FakeIcon {
+  margin-inline: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  border: 1px solid var(--color-error);
+  border-radius: 0.375rem;
+  font-size: 0.625rem;
+  font-weight: var(--font-weight-medium);
+  line-height: initial;
+  color: var(--color-error);
+  text-transform: capitalize;
+}
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/VerifiedIcon.scss ***!
+  \********************************************************************************************************************************************************************************************************/
+.VerifiedIcon {
+  --color-fill: var(--color-primary);
+  --color-checkmark: #fff;
+  --color-fill: var(--color-primary);
+  --color-checkmark: #fff;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/common/FullNameTitle.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************/
+.FullNameTitle-module__root {
+  display: flex !important;
+  gap: 0.25rem;
+  align-items: center;
+}
+.FullNameTitle-module__root .custom-emoji {
+  color: var(--color-primary);
+}
+.FullNameTitle-module__root .statusSparkles {
+  color: var(--accent-color);
+}
+.selected .FullNameTitle-module__root .statusSparkles {
+  color: white;
+}
+.FullNameTitle-module__root .FullNameTitle-module__statusTransition {
+  width: 1.5em !important;
+  height: 1.5em !important;
+}
+
+.FullNameTitle-module__fullName {
+  overflow: hidden;
+  margin-bottom: 0;
+  font-size: 1em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.FullNameTitle-module__fullName.FullNameTitle-module__canCopy {
+  pointer-events: all;
+}
+
+.FullNameTitle-module__statusTransitionSlide {
+  display: flex;
+  align-items: center;
+}
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/calls/group/GroupCallParticipantMenu.scss ***!
+  \*************************************************************************************************************************************************************************************************************************/
+.participant-menu {
+  --color-text: white;
+  --color-background-compact-menu: #212121DD;
+  --color-background-compact-menu-hover: #00000066;
+  --color-background: #212121DD;
+  --color-item-active: #00000066;
+  position: absolute;
+  z-index: var(--z-modal-menu);
+}
+.participant-menu .bubble {
+  overflow: visible;
+  padding: 0;
+  border: none !important;
+  border-radius: 0;
+  color: var(--color-text);
+  background: none !important;
+  -webkit-backdrop-filter: none !important;
+          backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+.participant-menu .bubble .group {
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  border-radius: var(--border-radius-default);
+  background: var(--color-background);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 0 0.25rem 0.5rem 0.125rem rgba(16, 16, 16, 0.3);
+}
+.participant-menu.compact .group {
+  background: var(--color-background-compact-menu);
+}
+.participant-menu .volume-control {
+  cursor: var(--custom-cursor, pointer);
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+}
+.participant-menu .volume-control .info {
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  padding: 0.75rem 1rem;
+}
+.participant-menu .volume-control .info .AnimatedSticker {
+  margin-right: 1rem;
+}
+.participant-menu .volume-control.high {
+  --range-color: #4DA6E0;
+}
+.participant-menu .volume-control.normal {
+  --range-color: #57BC6C;
+}
+.participant-menu .volume-control.medium {
+  --range-color: #CAA53B;
+}
+.participant-menu .volume-control.low {
+  --range-color: #CB5757;
+}
+.participant-menu .volume-control input[type=range] {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: -1.5rem;
+  width: calc(100% + 1.5rem);
+  height: 3rem;
+  margin: 0;
+}
+.participant-menu .volume-control input[type=range]::-webkit-slider-thumb {
+  width: 1.5rem;
+  height: 3rem;
+  border: none;
+  border-radius: var(--border-radius-default);
+  background: var(--range-color);
+  box-shadow: -13.5rem 0 0 12.75rem var(--range-color);
+  -webkit-transition: 0.25s ease-in-out background-color, 0.25s ease-in-out box-shadow;
+  transition: 0.25s ease-in-out background-color, 0.25s ease-in-out box-shadow;
+}
+.participant-menu .volume-control input[type=range]::-moz-range-thumb {
+  width: 1.5rem;
+  height: 3rem;
+  border: none;
+  border-radius: var(--border-radius-default);
+  background: var(--range-color);
+  box-shadow: -13.5rem 0 0 12.75rem var(--range-color);
+  -moz-transition: 0.25s ease-in-out background-color, 0.25s ease-in-out box-shadow;
+  transition: 0.25s ease-in-out background-color, 0.25s ease-in-out box-shadow;
+}
+.participant-menu .volume-control input[type=range]::-ms-thumb {
+  width: 1.5rem;
+  height: 3rem;
+  border: none;
+  border-radius: var(--border-radius-default);
+  background: var(--range-color);
+  box-shadow: -13.5rem 0 0 12.75rem var(--range-color);
+  -ms-transition: 0.25s ease-in-out background-color, 0.25s ease-in-out box-shadow;
+  transition: 0.25s ease-in-out background-color, 0.25s ease-in-out box-shadow;
+}
+.participant-menu .volume-control input[type=range] {
+  display: block;
+  width: 100%;
+  height: 0.75rem;
+  margin-bottom: 0.5rem;
+  -webkit-appearance: none;
+  background: transparent;
+}
+.participant-menu .volume-control input[type=range]::-ms-track {
+  cursor: var(--custom-cursor, pointer);
+  width: 100%;
+  border-color: transparent;
+  color: transparent;
+  background: transparent;
+}
+.participant-menu .volume-control input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+.participant-menu .volume-control input[type=range]::-moz-range-thumb {
+  -moz-appearance: none;
+}
+.participant-menu .volume-control input[type=range]::-webkit-slider-runnable-track {
+  cursor: var(--custom-cursor, pointer);
+}
+.participant-menu .volume-control input[type=range]::-moz-range-track, .participant-menu .volume-control input[type=range]::-moz-range-progress {
+  cursor: var(--custom-cursor, pointer);
+}
+.participant-menu .volume-control input[type=range]:focus {
+  outline: none;
+}
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/calls/group/GroupCallParticipant.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************/
+.GroupCallParticipant-module__root .ListItem-button {
+  --color-chat-hover: rgba(255, 255, 255, 0.04);
+  padding: 0.5rem;
+}
+.GroupCallParticipant-module__root .multiline-item {
+  align-self: center;
+}
+.GroupCallParticipant-module__root .title {
+  display: flex !important;
+}
+.GroupCallParticipant-module__root .title .fullName {
+  --emoji-size: 1rem;
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.GroupCallParticipant-module__subtitle {
+  display: flex !important;
+  gap: 0.375rem;
+  align-items: center;
+  font-size: 1rem !important;
+}
+
+.GroupCallParticipant-module__subtitleText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.GroupCallParticipant-module__icon {
+  margin-right: 0.25rem;
+  margin-left: auto;
+}
+
+.GroupCallParticipant-module__subtitleBlue {
+  --color-text-secondary: #4da6e0;
+}
+
+.GroupCallParticipant-module__subtitleRed {
+  --color-text-secondary: #ff706f;
+}
+
+.GroupCallParticipant-module__subtitleGreen {
+  --color-text-secondary: #57bc6c;
+}
+
+.GroupCallParticipant-module__avatar {
+  margin-right: 0.5rem;
+}
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/calls/group/GroupCallParticipantList.module.scss ***!
+  \********************************************************************************************************************************************************************************************************************************/
+.GroupCallParticipantList-module__root {
+  position: absolute;
+  top: 0.25rem;
+  width: 100%;
+  padding-bottom: 5rem;
+}
+
+.GroupCallParticipantList-module__portrait {
+  padding-bottom: 6rem;
+}
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/calls/group/GroupCallParticipantVideo.module.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+.GroupCallParticipantVideo-module__wrapper {
+  position: absolute;
+  transform: translate(var(--x), var(--y)) scale(1);
+  width: var(--width);
+  height: var(--height);
+  opacity: 1;
+}
+
+.GroupCallParticipantVideo-module__hidden {
+  transform: translate(var(--x), var(--y)) scale(0.6);
+  opacity: 0;
+}
+
+.GroupCallParticipantVideo-module__noAnimate {
+  transition: none;
+}
+
+.GroupCallParticipantVideo-module__root {
+  -webkit-user-select: none;
+          user-select: none;
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.625rem;
+}
+.GroupCallParticipantVideo-module__root::before {
+  content: "";
+  position: absolute;
+  inset: -0.125rem;
+  transform: scale(0.96);
+  display: block;
+  border-radius: 0.75rem;
+  background: var(--gradient-speaking);
+  transition: 0.25s ease-in-out transform;
+}
+.GroupCallParticipantVideo-module__root::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: block;
+  border-radius: 0.625rem;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55.62%, rgba(0, 0, 0, 0.5) 86.46%);
+}
+.GroupCallParticipantVideo-module__root.GroupCallParticipantVideo-module__speaking::before {
+  transform: scale(1);
+}
+
+.GroupCallParticipantVideo-module__loader {
+  position: absolute;
+}
+
+.GroupCallParticipantVideo-module__video {
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.625rem;
+  object-fit: contain;
+}
+
+.GroupCallParticipantVideo-module__videoFallback {
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+}
+
+.GroupCallParticipantVideo-module__thumbnailWrapper {
+  position: absolute;
+  z-index: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.625rem;
+  background: #000;
+}
+
+.GroupCallParticipantVideo-module__thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.GroupCallParticipantVideo-module__flipped {
+  transform: scaleX(-1);
+}
+
+.GroupCallParticipantVideo-module__pinButton {
+  position: absolute;
+  z-index: 3;
+  inset-block-start: 0.25rem;
+  inset-inline-end: 0.25rem;
+  color: #FFFFFF !important;
+}
+
+.GroupCallParticipantVideo-module__bottomPanel {
+  position: absolute;
+  z-index: 3;
+  inset-block-end: 0;
+  inset-inline: 0;
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-end-start-radius: 0.625rem;
+  border-end-end-radius: 0.625rem;
+}
+
+.GroupCallParticipantVideo-module__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  font-size: 1rem;
+}
+
+.GroupCallParticipantVideo-module__pinned .GroupCallParticipantVideo-module__bottomPanel, .GroupCallParticipantVideo-module__pinned::after {
+  opacity: 0;
+  transition: 0.25s ease-in-out opacity;
+}
+
+.GroupCallParticipantVideo-module__pinned:hover .GroupCallParticipantVideo-module__bottomPanel, .GroupCallParticipantVideo-module__pinned:hover::after {
+  opacity: 1;
+}
+
+.GroupCallParticipantVideo-module__name {
+  font-weight: var(--font-weight-medium);
+  line-height: 1.125rem;
+  color: #FFFFFF;
+}
+.GroupCallParticipantVideo-module__name .fullName {
+  --emoji-size: 1rem;
+  overflow: hidden;
+  font-size: 1rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.GroupCallParticipantVideo-module__status {
+  line-height: 1.125rem;
+  color: #FFFFFF;
+  opacity: 0.6;
+}
+
+.GroupCallParticipantVideo-module__icon {
+  margin-left: auto;
+}
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/calls/group/MicrophoneButton.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************/
+.MicrophoneButton-module__root {
+  position: relative;
+  background: var(--gradient-green);
+}
+.MicrophoneButton-module__root::before, .MicrophoneButton-module__root::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: block;
+  opacity: 0;
+  transition: 0.25s ease-in-out opacity, 0.25s ease-in-out transform;
+}
+.MicrophoneButton-module__root::before {
+  transform: rotate(45deg);
+  background: var(--gradient-blue);
+}
+.MicrophoneButton-module__root::after {
+  transform: rotate(-45deg);
+  background: var(--gradient-purple);
+}
+
+.MicrophoneButton-module__spinner {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.25s ease-in-out opacity;
+}
+
+.MicrophoneButton-module__spinnerVisible {
+  opacity: 1;
+}
+
+.MicrophoneButton-module__mutedByAdmin::before, .MicrophoneButton-module__canUnmute::before {
+  transform: rotate(0deg);
+  opacity: 1;
+}
+
+.MicrophoneButton-module__icon {
+  z-index: 1;
+}
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/calls/group/GroupCall.module.scss ***!
+  \*****************************************************************************************************************************************************************************************************************/
+.GroupCall-module__root {
+  --group-call-panel-color: #212121;
+  --group-call-panel-header-border-color: #3b3b3b;
+  --color-dividers: var(--group-call-panel-header-border-color);
+  --group-call-background-color: #000000;
+  --green-button-color: rgba(1, 200, 80, 0.3);
+  --blue-button-color: rgb(60, 135, 247, 0.2);
+  --purple-button-color: rgb(61, 82, 223, 0.2);
+  --gradient-blue: linear-gradient(225deg, #4EABF8 14.73%, #3478F6 85.27%);
+  --gradient-green: linear-gradient(230.46deg, #00A3B4 12.94%, #00CB47 86.29%);
+  --gradient-purple: linear-gradient(230.46deg, #CE4D74 0%, #3D52DF 100%);
+  --gradient-speaking: linear-gradient(135deg, #5CC85C 0%, #48A1B3 101.27%);
+  --red-button-color: rgba(255, 89, 90, 0.3);
+  --disabled-button-color: #333333;
+  --color-text-secondary: #AAAAAA;
+  --color-text: #FFFFFF;
+  --default-width: 26.25rem;
+  --max-height: 40rem;
+  color: var(--color-text);
+}
+.GroupCall-module__root .modal-dialog {
+  overflow: hidden;
+  max-width: var(--default-width);
+  height: 100%;
+  min-height: min(80vh, var(--max-height));
+  max-height: min(var(--max-height), 100vh);
+  background: var(--group-call-background-color);
+}
+.GroupCall-module__root .modal-content {
+  display: flex;
+  min-height: 100%;
+  padding: 0;
+}
+
+.GroupCall-module__panelWrapper {
+  width: 100%;
+  max-width: var(--default-width);
+}
+
+.GroupCall-module__panel {
+  position: relative;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--group-call-panel-color);
+}
+
+.GroupCall-module__panelScrollTrigger {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.GroupCall-module__panelHeader {
+  -webkit-user-select: none;
+          user-select: none;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding: 0.375rem 0.875rem;
+  border-bottom: 0.0625rem solid transparent;
+  background: var(--group-call-panel-color);
+  transition: 0.25s ease-in-out border-bottom-color;
+  padding-inline-end: calc(0.875rem - var(--scrollbar-width));
+}
+.GroupCall-module__panelHeader.GroupCall-module__scrolled {
+  border-bottom-color: var(--group-call-panel-header-border-color);
+}
+body.is-electron .GroupCall-module__root.GroupCall-module__fullscreen:not(.GroupCall-module__landscape) .GroupCall-module__panelHeader {
+  padding-left: 5rem;
+}
+
+.GroupCall-module__headerButton {
+  color: var(--color-text) !important;
+}
+
+.GroupCall-module__firstButton {
+  margin-right: 1.375rem;
+}
+
+.GroupCall-module__lastButton {
+  margin-left: auto;
+}
+
+.GroupCall-module__panelHeaderText {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.GroupCall-module__title {
+  unicode-bidi: plaintext;
+  overflow: hidden;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.375rem;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+
+.GroupCall-module__bigger {
+  font-size: 1.25rem;
+}
+
+.GroupCall-module__subtitle {
+  overflow: hidden;
+  display: inline-block;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  color: var(--color-text-secondary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.GroupCall-module__participants {
+  position: relative;
+  margin: 0.125rem 0.5rem 0;
+  margin-inline-end: calc(0.5rem - var(--scrollbar-width));
+}
+
+.GroupCall-module__participantVideos {
+  position: relative;
+  width: 100%;
+}
+
+.GroupCall-module__addParticipantButton {
+  position: fixed;
+}
+
+.GroupCall-module__videos {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - var(--default-width));
+}
+
+.GroupCall-module__mainVideoContainer {
+  position: absolute;
+}
+
+.GroupCall-module__videosHeader {
+  display: flex;
+  align-items: center;
+  padding: 0.375rem 0.875rem;
+}
+body.is-electron .GroupCall-module__root:not(.GroupCall-module__appFullscreen) .GroupCall-module__videosHeader {
+  padding-left: 5rem;
+}
+
+.GroupCall-module__videosHeaderLastButton {
+  margin-left: auto;
+}
+
+.GroupCall-module__videosContent {
+  flex-grow: 1;
+  margin: 0.1875rem 0.625rem 0.5rem;
+}
+
+.GroupCall-module__actions {
+  --actions-max-width: 0px;
+  position: absolute;
+  z-index: 2;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(calc(-50% - var(--actions-max-width) / 2));
+  display: flex;
+  gap: 1.25rem;
+}
+
+.GroupCall-module__actionButton {
+  width: 3.375rem !important;
+  height: 3.375rem !important;
+  color: var(--color-text) !important;
+  background-color: var(--green-button-color) !important;
+  -webkit-backdrop-filter: blur(25px);
+          backdrop-filter: blur(25px);
+  transition: 0.15s filter, 0.25s ease-out background-color;
+}
+.GroupCall-module__actionButton.disabled {
+  background: var(--disabled-button-color) !important;
+}
+.GroupCall-module__actionButton:hover {
+  filter: brightness(1.1);
+}
+
+.GroupCall-module__destructive {
+  background: var(--red-button-color) !important;
+}
+
+.GroupCall-module__canRequestToSpeak {
+  background: var(--purple-button-color) !important;
+}
+
+.GroupCall-module__muted {
+  background: var(--blue-button-color) !important;
+}
+
+.GroupCall-module__fullscreen .modal-dialog {
+  min-width: 100%;
+  min-height: 100%;
+  border-radius: 0;
+}
+.GroupCall-module__fullscreen .modal-content {
+  max-height: initial;
+}
+.GroupCall-module__fullscreen.GroupCall-module__portrait .GroupCall-module__panelWrapper {
+  max-width: 100%;
+}
+
+.GroupCall-module__landscape .GroupCall-module__panelWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateZ(0);
+}
+.GroupCall-module__landscape:not(.GroupCall-module__noVideoParticipants) .GroupCall-module__actions {
+  --actions-max-width: var(--default-width);
+  bottom: 2.5rem;
+  padding: 0.75rem;
+  border-radius: 1.25rem;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(50px);
+          backdrop-filter: blur(50px);
+  transition: 250ms ease-in-out opacity;
+}
+.GroupCall-module__landscape:not(.GroupCall-module__noVideoParticipants) .GroupCall-module__videos:hover ~ .GroupCall-module__actions, .GroupCall-module__landscape:not(.GroupCall-module__noVideoParticipants) .GroupCall-module__mainVideoContainer:hover ~ .GroupCall-module__actions, .GroupCall-module__landscape:not(.GroupCall-module__noVideoParticipants) .GroupCall-module__actions:hover {
+  opacity: 1;
+}
+.GroupCall-module__landscape.GroupCall-module__noVideoParticipants .GroupCall-module__panelWrapper {
+  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: max(50vw, 30rem);
+}
+.GroupCall-module__landscape.GroupCall-module__noVideoParticipants .modal-content {
+  background: var(--group-call-panel-color);
+}
+
+.GroupCall-module__portrait .GroupCall-module__panelWrapper::after {
+  pointer-events: none;
+  content: "";
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 7.5rem;
+  background: linear-gradient(180deg, rgba(33, 33, 33, 0) 0%, rgba(33, 33, 33, 0.65) 48.54%, #212121 100%);
+}
+
+.GroupCall-module__noSidebar .GroupCall-module__panelWrapper {
+  transform: translate3d(100%, 0, 0);
+}
+.GroupCall-module__noSidebar .GroupCall-module__videos {
+  width: 100%;
+}
+.GroupCall-module__noSidebar .GroupCall-module__actions {
+  --actions-max-width: 0px !important;
+}
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/calls/ActiveCallHeader.scss ***!
+  \***********************************************************************************************************************************************************************************************************/
+.ActiveCallHeader {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 2rem;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  color: #fff;
+  background: linear-gradient(135deg, rgb(49, 82, 232), rgb(143, 74, 172));
+}
+.ActiveCallHeader.open {
+  transform: translateY(0);
+}
+.ActiveCallHeader span {
+  line-height: 100%;
+}
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/calls/phone/PhoneCallButton.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************/
+.PhoneCallButton-module__root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 5rem;
+}
+.PhoneCallButton-module__root:not(:first-child) {
+  margin-left: 1rem;
+}
+
+.PhoneCallButton-module__button {
+  color: #fff !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+.PhoneCallButton-module__button:hover {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+.PhoneCallButton-module__button.PhoneCallButton-module__active {
+  color: var(--color-text-secondary) !important;
+  background-color: #fff !important;
+}
+.PhoneCallButton-module__button.PhoneCallButton-module__active:hover {
+  background-color: #ddd !important;
+}
+
+.PhoneCallButton-module__button-text {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #fff;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/calls/phone/PhoneCall.module.scss ***!
+  \*****************************************************************************************************************************************************************************************************************/
+.PhoneCall-module__root .modal-dialog {
+  overflow: hidden;
+}
+.PhoneCall-module__root .modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  padding: 0;
+}
+.PhoneCall-module__root .Avatar {
+  --radius: 0;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  transform: scale(1.1);
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+.PhoneCall-module__root .Avatar .Avatar__media {
+  border-radius: 0;
+  object-fit: cover;
+}
+.PhoneCall-module__root .Avatar.PhoneCall-module__blurred .Avatar__media {
+  filter: blur(10px);
+}
+
+.PhoneCall-module__single-column .modal-dialog {
+  max-width: 100% !important;
+  margin: 0;
+  border-radius: 0;
+}
+.PhoneCall-module__single-column .modal-content {
+  height: calc(var(--vh) * 100);
+  max-height: calc(var(--vh) * 100);
+}
+
+.PhoneCall-module__header {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+  color: #fff;
+}
+.PhoneCall-module__header .Button {
+  color: #fff;
+}
+body.is-electron .PhoneCall-module__root.PhoneCall-module__single-column .PhoneCall-module__header {
+  padding-left: 5rem;
+}
+
+.PhoneCall-module__close-button {
+  margin-left: auto;
+}
+
+.PhoneCall-module__emojis-backdrop {
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: 0.25s ease-in-out background-color;
+}
+.PhoneCall-module__emojis-backdrop.PhoneCall-module__open {
+  pointer-events: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.PhoneCall-module__emojis {
+  pointer-events: auto;
+  cursor: var(--custom-cursor, pointer);
+  -webkit-user-select: none;
+          user-select: none;
+  top: 0;
+  height: 3rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  transition: 0.25s ease-in-out transform;
+}
+.PhoneCall-module__emojis.PhoneCall-module__open {
+  transform: scale(2) translateY(3rem);
+}
+
+.PhoneCall-module__emoji-tooltip {
+  -webkit-user-select: none;
+          user-select: none;
+  position: absolute;
+  max-width: 20rem;
+  margin-top: 10rem;
+  font-weight: var(--font-weight-medium);
+  color: white;
+  text-align: center;
+  opacity: 0;
+  transition: 0.25s ease-in-out opacity;
+}
+.PhoneCall-module__emoji-tooltip.PhoneCall-module__open {
+  opacity: 1;
+}
+
+.PhoneCall-module__user-info {
+  pointer-events: none;
+  -webkit-user-select: none;
+          user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: auto;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  color: #fff;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+}
+
+.PhoneCall-module__buttons {
+  -webkit-user-select: none;
+          user-select: none;
+  position: absolute;
+  bottom: 1rem;
+  display: flex;
+}
+
+.PhoneCall-module__leave {
+  background: #ff595a !important;
+}
+.PhoneCall-module__leave:hover {
+  background-color: #d24646 !important;
+}
+
+.PhoneCall-module__accept {
+  background: #5CC85E !important;
+}
+.PhoneCall-module__accept:hover {
+  background-color: #4eab50 !important;
+}
+
+.PhoneCall-module__accept-icon {
+  transform: rotate(-135deg);
+}
+
+.PhoneCall-module__main-video {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.PhoneCall-module__second-video {
+  position: absolute;
+  z-index: -1;
+  right: 1rem;
+  bottom: 1rem;
+  transform: translateY(calc(100% + 1rem)) rotateY(180deg);
+  width: 9rem;
+  border-radius: 0.5rem;
+  transition: 0.25s ease-in-out transform;
+}
+.PhoneCall-module__second-video.PhoneCall-module__visible {
+  transform: translateY(-5.5rem) rotateY(180deg);
+}
+.PhoneCall-module__second-video.PhoneCall-module__fullscreen {
+  transform: translateY(0) rotateY(180deg);
+}
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/calls/phone/RatePhoneCallModal.module.scss ***!
+  \**************************************************************************************************************************************************************************************************************************/
+.RatePhoneCallModal-module__stars {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+.RatePhoneCallModal-module__star {
+  cursor: var(--custom-cursor, pointer);
+  color: var(--color-text-secondary);
+}
+.RatePhoneCallModal-module__star:not(:first-child) {
+  margin-left: 1rem;
+}
+.RatePhoneCallModal-module__star.RatePhoneCallModal-module__isFilled {
+  color: var(--color-primary);
+}
+
+.RatePhoneCallModal-module__comment {
+  overflow: hidden;
+  margin-top: 1rem;
+}
+.RatePhoneCallModal-module__comment:not(.RatePhoneCallModal-module__visible) {
+  display: none;
+}
+
+/*# sourceMappingURL=BundleCalls.488acf7dd89afd322b93.css.map*/
