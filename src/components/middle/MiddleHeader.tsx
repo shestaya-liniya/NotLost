@@ -52,7 +52,6 @@ import Button from '../ui/Button';
 import Transition from '../ui/Transition';
 import HeaderActions from './HeaderActions';
 import AudioPlayer from './panes/AudioPlayer';
-import HeaderPinnedMessage from './panes/HeaderPinnedMessage';
 
 import './MiddleHeader.scss';
 
@@ -226,7 +225,6 @@ const MiddleHeader: FC<OwnProps & StateProps> = ({
 
   const isAudioPlayerActive = Boolean(audioMessage);
   const isAudioPlayerRendering = isDesktop && isAudioPlayerActive;
-  const isPinnedMessagesFullWidth = isAudioPlayerActive || !isDesktop;
 
   const { connectionStatusText } = useConnectionStatus(lang, connectionState, isSyncing || isFetchingDifference, true);
 
@@ -342,18 +340,6 @@ const MiddleHeader: FC<OwnProps & StateProps> = ({
       >
         {renderInfo()}
       </Transition>
-      {!isPinnedMessagesFullWidth && (
-        <HeaderPinnedMessage
-          key={chatId}
-          chatId={chatId}
-          threadId={threadId}
-          messageListType={messageListType}
-          onFocusPinnedMessage={onFocusPinnedMessage}
-          getLoadingPinnedId={getLoadingPinnedId}
-          getCurrentPinnedIndex={getCurrentPinnedIndex}
-        />
-      )}
-
       <div className="header-tools">
         {isAudioPlayerRendering && (
           <AudioPlayer />

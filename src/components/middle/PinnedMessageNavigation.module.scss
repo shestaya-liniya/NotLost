@@ -13,7 +13,7 @@
   width: 0.125rem;
   height: 2.25rem;
   border-radius: 0.0625rem;
-  background: var(--color-primary);
+  background: var(--color-links);
 }
 
 .pinned-message-border-wrapper {
@@ -35,7 +35,7 @@
   height: var(--height);
   border-radius: 0.0625rem;
 
-  background: var(--color-primary);
+  background: var(--color-links);
 
   transition: transform 0.25s ease-in-out;
 }

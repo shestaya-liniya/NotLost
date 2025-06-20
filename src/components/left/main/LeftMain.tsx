@@ -26,7 +26,7 @@ import LeftSearch from '../search/LeftSearch.async';
 import ChatList from './ChatList';
 import ContactList from './ContactList.async';
 import ForumPanel from './ForumPanel';
-import Workspace from './Workspace';
+import Workspace from './workspace/Workspace';
 
 // import LeftMainHeader from './LeftMainHeader';
 import './LeftMain.scss';
@@ -208,7 +208,6 @@ const LeftMain: FC<OwnProps & StateProps> = ({
               return (
                 <div>
                   <div style="padding: 0.5rem;">
-                    {/* eslint-disable-next-line react/jsx-no-bind */ }
                     <SearchInput onChange={() => {}} />
                   </div>
                   <ChatList isActive folderType="all" />
@@ -218,7 +217,6 @@ const LeftMain: FC<OwnProps & StateProps> = ({
               return (
                 <div style="height: 100%">
                   <div style="padding: 0.5rem;">
-                    {/* eslint-disable-next-line react/jsx-no-bind */ }
                     <SearchInput onChange={() => {}} />
                   </div>
                   <ChatList isActive folderType="saved" />
@@ -228,7 +226,6 @@ const LeftMain: FC<OwnProps & StateProps> = ({
               return (
                 <div style="height: 100%">
                   <div style="padding: 0.5rem;">
-                    {/* eslint-disable-next-line react/jsx-no-bind */ }
                     <SearchInput onChange={() => {}} />
                   </div>
                   <ChatList isActive folderType="all" category="unread" />
@@ -238,7 +235,6 @@ const LeftMain: FC<OwnProps & StateProps> = ({
               return (
                 <div style="height: 100%">
                   <div style="padding: 0.5rem;">
-                    {/* eslint-disable-next-line react/jsx-no-bind */ }
                     <SearchInput onChange={() => {}} />
                   </div>
                   <ChatList isActive folderType="all" category="groups" />
@@ -248,7 +244,6 @@ const LeftMain: FC<OwnProps & StateProps> = ({
               return (
                 <div style="height: 100%">
                   <div style="padding: 0.5rem;">
-                    {/* eslint-disable-next-line react/jsx-no-bind */ }
                     <SearchInput onChange={() => {}} />
                   </div>
                   <ChatList isActive folderType="all" category="channels" />
@@ -258,7 +253,6 @@ const LeftMain: FC<OwnProps & StateProps> = ({
               return (
                 <div style="height: 100%">
                   <div style="padding: 0.5rem;">
-                    {/* eslint-disable-next-line react/jsx-no-bind */ }
                     <SearchInput onChange={() => {}} />
                   </div>
                   <ChatList isActive folderType="all" category="bots" />

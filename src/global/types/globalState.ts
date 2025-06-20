@@ -458,6 +458,8 @@ export type GlobalState = {
     byOrder: ApiWorkspace[];
     areLoaded: boolean;
   };
+  expandedState: Record<string, boolean>;
+
 };
 
 export type RequiredGlobalState = GlobalState & { _: never };

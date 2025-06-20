@@ -1,3 +1,4 @@
+import type { ApiSection } from '../../api/notlost/types';
 import type {
   ApiAttachBot,
   ApiAttachment,
@@ -2668,18 +2669,11 @@ export interface ActionPayloads {
 
   // Workspace
   loadAllWorkspaces: undefined;
+  setActiveWorkspaceId: string;
+
   addNewWorkspace: {
     title: string;
     iconName: IconName;
-  };
-  setActiveWorkspaceId: string;
-  addNewFolderIntoWorkspace: {
-    workspaceId: string;
-    title: string;
-  };
-  deleteFolderFromWorkspace: {
-    workspaceId: string;
-    folderId: string;
   };
   deleteWorkspace: {
     workspaceId: string;
@@ -2688,19 +2682,49 @@ export interface ActionPayloads {
     workspaceId: string;
     newTitle: string;
   };
-  renameWorkspaceFolder: {
+  updateWorkspaceChats: {
     workspaceId: string;
+    chatIds: string[];
+  };
+
+  // Section
+  addNewSectionIntoWorkspace: {
+    workspaceId: string;
+    title: string;
+    callback?: (section: ApiSection) => void;
+  };
+  deleteSectionFromWorkspace: {
+    sectionId: string;
+  };
+  renameWorkspaceSection: {
+    sectionId: string;
+    newTitle: string;
+  };
+  updateSectionChats: {
+    sectionId: string;
+    chatIds: string[];
+  };
+
+  // Folder
+  addNewFolderIntoSection: {
+    sectionId: string;
+    title: string;
+  };
+  deleteFolderFromSection: {
+    folderId: string;
+  };
+  renameSectionFolder: {
     folderId: string;
     newTitle: string;
   };
-  updateWorkspaceFolderChats: {
-    workspaceId: string;
+  updateFolderChats: {
     folderId: string;
     chatIds: string[];
   };
-  updateWorkspacePinnedChats: {
-    workspaceId: string;
-    chatIds: string[];
+
+  persistExpandedState: {
+    id: string;
+    isExpanded: boolean;
   };
 }
 

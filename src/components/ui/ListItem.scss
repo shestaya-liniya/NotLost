@@ -63,22 +63,21 @@
   }
 
   .ListItem-button {
-    min-height: 2.5rem;
-    background-color: var(--background-color);
-    border: none !important;
-    box-shadow: none !important;
-    outline: none !important;
-    display: flex;
-    padding: 0 1rem;
-    position: relative;
-    overflow: hidden;
-    white-space: nowrap;
-    color: var(--color-text);
-    border-radius: var(--border-radius-medium);
     --ripple-color: rgba(0, 0, 0, 0.08);
+
+    position: relative;
+
+    overflow: hidden;
+    display: flex;
+
+    min-height: 2.5rem;
+    padding: 0 1rem;
+    border: none !important;
+    border-radius: var(--border-radius-medium);
+
+    color: var(--color-text);
     text-decoration: none;
     white-space: nowrap;
-
     background-color: var(--background-color);
     outline: none !important;
     box-shadow: none !important;
@@ -265,9 +264,9 @@
     .status,
     .typing-status {
       overflow: hidden;
-      white-space: nowrap;
-      text-overflow: clip;
       text-align: initial;
+      text-overflow: clip;
+      white-space: nowrap;
     }
 
     h3,
@@ -359,8 +358,8 @@
     .typing-status {
       body.is-ios &,
       body.is-macos & {
-        line-height: 0.875rem;
         font-size: 0.875rem;
+        line-height: 0.875rem;
       }
     }
 

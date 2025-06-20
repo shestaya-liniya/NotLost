@@ -132,6 +132,8 @@ $color-message-story-mention-to: #74bcff;
   --color-light-coral: #{$color-light-coral};
 
   --color-links: #{$color-links};
+  --color-links-rgb: #{toRGB($color-links)};
+
 
   --color-own-links: #{$color-white};
 

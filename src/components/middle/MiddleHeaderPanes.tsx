@@ -73,8 +73,6 @@ const MiddleHeaderPanes = ({
   const [getBotVerificationState, setBotVerificationState] = useSignal<PaneState>(FALLBACK_PANE_STATE);
   const [getPaidMessageChargeState, setPaidMessageChargeState] = useSignal<PaneState>(FALLBACK_PANE_STATE);
 
-  const isPinnedMessagesFullWidth = isAudioPlayerRendered || !isDesktop;
-
   const isFirstRenderRef = useRef(true);
   const {
     shouldRender,
@@ -156,7 +154,6 @@ const MiddleHeaderPanes = ({
         getCurrentPinnedIndex={getCurrentPinnedIndex}
         onPaneStateChange={setPinnedState}
         isFullWidth
-        shouldHide={!isPinnedMessagesFullWidth}
       />
       <BotAdPane
         chatId={chatId}

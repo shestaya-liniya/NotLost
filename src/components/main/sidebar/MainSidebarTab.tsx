@@ -1,5 +1,5 @@
 import type { FC } from '../../../lib/teact/teact';
-import React, { memo, useCallback } from '../../../lib/teact/teact';
+import { memo, useCallback } from '../../../lib/teact/teact';
 import { getActions, withGlobal } from '../../../global';
 
 import type { LeftColumnContent } from '../../../types';
@@ -61,7 +61,6 @@ const MainSidebarTab: FC<OwnProps & StateProps> = ({
       withPortalForMenu
       className={styles.listItem}
       contextActions={contextActions}
-      // eslint-disable-next-line react/jsx-no-bind
       onClick={() => {}}
     >
       <div className={selectorClassName} onClick={handleOnClick}>

@@ -1,11 +1,10 @@
 @use "../../../styles/mixins";
 
 .container {
+  position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  position: relative;
 }
 
 .header {
@@ -86,12 +85,15 @@
 
 .topShadow {
   position: absolute;
-  width: 100%;
-  top: -24px;
-  height: 20px;
-  box-shadow: none;
-  transition: box-shadow 0.2s ease;
   z-index: 2;
+  top: -24px;
+
+  width: 100%;
+  height: 20px;
+
+  box-shadow: none;
+
+  transition: box-shadow 0.2s ease;
 }
 
 .visibleShadow {

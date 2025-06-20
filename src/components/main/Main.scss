@@ -5,12 +5,13 @@
 
 #Main {
   overflow: hidden;
-  height: 100%;
-  text-align: left;
-  overflow: hidden;
   flex: 1;
-  border-radius: 8px;
+
+  height: 100%;
   border: 1px solid var(--color-borders);
+  border-radius: 8px;
+
+  text-align: left;
 
   @media (min-width: 1276px) {
     position: relative;

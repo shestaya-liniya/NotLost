@@ -1,0 +1,143 @@
+.Accordion {
+  width: 100%;
+}
+
+.AccordionHeader {
+  width: 100%;
+  height: 1.875rem;
+  padding: 0 0.5rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  cursor: pointer;
+
+  border-radius: var(--border-radius-default-tiny);
+  font-weight: var(--font-weight-medium);
+  transition: all 0.15s ease;
+
+  &:hover {
+    background-color: var(--color-chat-hover);
+
+    i {
+      opacity: 1 !important;
+    }
+  }
+
+  &:active {
+    background-color: rgba(40, 40, 40, 0.8);
+  }
+
+  &.highlighted {
+    background-color: var(--color-telegram-blue);
+
+    i {
+      color: white;
+
+      &:hover {
+        color: var(--color-telegram-blue);
+        background-color: white;
+      }
+    }
+
+    .title {
+      color: white;
+    }
+  }
+
+  .title {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  i {
+    padding: 0.125rem;
+    border-radius: var(--border-radius-default-tiny);
+    color: var(--color-text-secondary);
+    transition: all 0.15s ease;
+
+    &.icon-down {
+      font-size: 12px;
+    }
+
+    &:hover {
+      background-color: var(--color-borders);
+    }
+
+    &.rotate {
+      transform: rotate(-90deg);
+    }
+  }
+
+  
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-left: auto;
+
+    i {
+      opacity: 0;
+    }
+  }
+
+  :global(.ListItem-button) {
+    min-height: unset !important;
+    padding: 0 !important;
+  }
+
+  :global(.Chat .ListItem-button) {
+    padding: 0.25rem 0.5rem !important;
+  }
+}
+
+
+
+.AccordionInner {
+  &.expanded {
+    margin-top: 1px;
+    padding-bottom: 0.5rem;
+
+    > * + * {
+      margin-top: 1px;
+    }
+  }
+
+  &.withPadding {
+    padding-left: 0.5rem;
+  }
+}
+
+.AccordionHeaderOnRename {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .leftIcon {
+    color: var(--color-links);
+  }
+
+  input {
+    width: 100%;
+    padding-left: 0.5rem;
+    border: none;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-default-tiny);
+
+    font-size: 0.875rem;
+
+    background: var(--color-button);
+    outline: none;
+    caret-color: var(--color-links);
+
+    &::placeholder {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.rotateDownIcon {
+  transform: rotate(-90deg);
+}

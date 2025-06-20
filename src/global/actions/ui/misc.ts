@@ -934,3 +934,19 @@ addCallback((global: GlobalState) => {
   prevIsScreenLocked = global.passcode.isScreenLocked;
   prevBlurredTabsCount = blurredTabsCount;
 });
+
+addActionHandler('persistExpandedState', (global, actions, payload): ActionReturnType => {
+  const { id, isExpanded } = payload;
+
+  const expandedState = {
+    ...global.expandedState,
+    [id]: isExpanded,
+  };
+
+  global = {
+    ...global,
+    expandedState,
+  };
+
+  setGlobal(global);
+});

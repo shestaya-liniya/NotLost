@@ -1,77 +1,20 @@
 import type { FC } from '../../../lib/teact/teact';
-import React, {
-  memo, useCallback, useEffect, useState,
+import {
+  memo,
 } from '../../../lib/teact/teact';
-import { getActions, withGlobal } from '../../../global';
 
-import type { ApiWorkspace } from '../../../api/notlost/types';
 import { LeftColumnContent } from '../../../types';
 
-import { selectTabState } from '../../../global/selectors';
 import buildClassName from '../../../util/buildClassName';
 
-import InlineFolder from '../../ui/InlineFolder';
+import MainSidebarSection from './MainSidebarSection';
 import MainSidebarTab from './MainSidebarTab';
 import MainSidebarTabProfile from './MainSidebarTabProfile';
+import MainSidebarWorkspaces from './MainSidebarWorkspaces';
 
 import styles from './MainSidebar.module.scss';
 
-type StateProps = {
-  workspaces: ApiWorkspace[];
-  areWorkspacesLoaded: boolean;
-  leftColumnContentKey: LeftColumnContent;
-  activeWorkspaceId: string | undefined;
-};
-
-const MainSidebar: FC<StateProps> = ({
-  workspaces,
-  areWorkspacesLoaded,
-  leftColumnContentKey,
-  activeWorkspaceId,
-}) => {
-  const {
-    loadAllWorkspaces, addNewWorkspace, openLeftColumnContent, setActiveWorkspaceId, deleteWorkspace,
-  } = getActions();
-  const [isAddingNewSpace, setIsAddingNewSpace] = useState(false);
-
-  const handleStartAddingNewSpace = useCallback(() => {
-    setIsAddingNewSpace(true);
-  }, []);
-
-  const handleCancelAddingNewSpace = useCallback(() => {
-    setIsAddingNewSpace(false);
-  }, []);
-
-  const handleSetActiveWorkspace = useCallback(
-    (id: string) => () => {
-      if (leftColumnContentKey !== LeftColumnContent.Workspace) {
-        openLeftColumnContent({ contentKey: LeftColumnContent.Workspace });
-      }
-      setActiveWorkspaceId(id);
-    },
-    [leftColumnContentKey],
-  );
-
-  const handleAddNewWorkspace = useCallback((title: string) => {
-    addNewWorkspace({
-      title,
-      iconName: 'lamp',
-    });
-    handleCancelAddingNewSpace();
-  }, [handleCancelAddingNewSpace]);
-
-  const handleDeleteWorkspace = useCallback((workspaceId: string) => {
-    deleteWorkspace({ workspaceId });
-  }, []);
-
-  useEffect(() => {
-    if (!areWorkspacesLoaded) {
-      loadAllWorkspaces();
-    } else if (activeWorkspaceId === undefined) {
-      handleSetActiveWorkspace(workspaces[0].id)();
-    }
-  }, [activeWorkspaceId, areWorkspacesLoaded, handleSetActiveWorkspace, workspaces]);
-
+const MainSidebar: FC = () => {
   const containerClassName = buildClassName(
     styles.container,
     'custom-scroll',
@@ -80,43 +23,11 @@ const MainSidebar: FC<StateProps> = ({
   return (
     <div className={containerClassName}>
       <div className={styles.tabs}>
-        <InlineFolder isSection title="Account" isSidebarTab>
+        <MainSidebarSection title="Account">
           <MainSidebarTabProfile />
-        </InlineFolder>
-        <InlineFolder
-          title="Spaces"
-          isSection
-          isSidebarTab
-          onAddClick={handleStartAddingNewSpace}
-        >
-          {workspaces.map((w) => (
-            <MainSidebarTab
-              iconName={w.iconName}
-              title={w.title}
-              onClick={handleSetActiveWorkspace(w.id)}
-              isSelected={leftColumnContentKey === LeftColumnContent.Workspace && activeWorkspaceId === w.id}
-              contextActions={[
-                {
-                  title: 'Delete',
-                  handler: () => handleDeleteWorkspace(w.id),
-                  icon: 'delete',
-                  destructive: true,
-                },
-              ]}
-            />
-          ))}
-          {isAddingNewSpace
-          && (
-            <InlineFolder
-              isEditing
-              isSidebarTab
-              onEditCancel={handleCancelAddingNewSpace}
-              onEditFinish={handleAddNewWorkspace}
-            />
-          )}
-
-        </InlineFolder>
-        <InlineFolder isSection title="Chats" isSidebarTab orderedIds={[]}>
+        </MainSidebarSection>
+        <MainSidebarWorkspaces />
+        <MainSidebarSection title="Chats">
           <MainSidebarTab
             title="Unreads"
             iconName="check"
@@ -147,31 +58,17 @@ const MainSidebar: FC<StateProps> = ({
             iconName="archive"
             leftColumnContent={LeftColumnContent.Archived}
           />
-        </InlineFolder>
-        <InlineFolder isSection title="Saved" isSidebarTab orderedIds={[]}>
+        </MainSidebarSection>
+        <MainSidebarSection title="Saved">
           <MainSidebarTab
             title="All"
             iconName="tag"
             leftColumnContent={LeftColumnContent.Saved}
           />
-        </InlineFolder>
+        </MainSidebarSection>
       </div>
     </div>
   );
 };
 
-export default memo(withGlobal(
-  (global): StateProps => {
-    const { workspaces } = global;
-
-    const tabState = selectTabState(global);
-    const leftColumnContentKey = tabState.leftColumn.contentKey;
-
-    return {
-      workspaces: workspaces.byOrder,
-      areWorkspacesLoaded: workspaces.areLoaded,
-      activeWorkspaceId: workspaces.activeId,
-      leftColumnContentKey,
-    };
-  },
-)(MainSidebar));
+export default memo(MainSidebar);

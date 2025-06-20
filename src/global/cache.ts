@@ -408,6 +408,7 @@ function reduceGlobal<T extends GlobalState>(global: T) {
       'savedReactionTags',
       'timezones',
       'availableEffectById',
+      'expandedState',
     ]),
     lastIsChatInfoShown: !getIsMobile() ? global.lastIsChatInfoShown : undefined,
     customEmojis: reduceCustomEmojis(global),

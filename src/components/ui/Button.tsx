@@ -23,7 +23,7 @@ export type OwnProps = {
   size?: 'default' | 'smaller' | 'tiny';
   color?: (
     'primary' | 'secondary' | 'gray' | 'danger' | 'translucent' | 'translucent-white' | 'translucent-black'
-    | 'translucent-bordered' | 'dark' | 'green' | 'adaptive' | 'stars' | 'bluredStarsBadge'
+    | 'translucent-bordered' | 'dark' | 'green' | 'adaptive' | 'stars' | 'bluredStarsBadge' | 'bezeled'
   );
   backgroundImage?: string;
   id?: string;

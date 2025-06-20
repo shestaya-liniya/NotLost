@@ -1,0 +1,14 @@
+.Accordion {
+  :global(.AccordionHeader .title) {
+    font-size: 12px;
+  }
+  :global(.AccordionInner) {
+    padding-bottom: 1rem;
+    padding-left: 0.5rem;
+  }
+
+  :global(.ListItem-button) {
+    padding: 0;
+    min-height: 0;
+  }
+}

@@ -82,7 +82,7 @@
     --ripple-color: rgba(0, 0, 0, 0.08);
 
     color: var(--color-white);
-    background-color: var(--color-primary);
+    background-color: var(--color-links);
 
     @include active-styles() {
       background-color: var(--color-primary-shade);
@@ -321,6 +321,22 @@
     color: var(--color-white);
     background: rgba(0, 0, 0, 0.2) !important;
     backdrop-filter: blur(50px);
+  }
+
+  &.bezeled {
+    --ripple-color: rgba(0, 0, 0, 0.08);
+
+    color: var(--color-links);
+    background-color: rgba(var(--color-links-rgb), 0.1);
+
+    @include active-styles() {
+      color: white;
+      background-color: var(--color-links);
+    }
+
+    @include no-ripple-styles() {
+      background-color: var(--color-primary-shade);
+    }
   }
 
   &.smaller {

@@ -16,13 +16,13 @@
 
     position: absolute;
     z-index: -100; // Hide behind the children
-    top: -2px;
+    top: -12px;
     right: 0;
     left: 0;
 
     height: 2px;
-
-    box-shadow: 0 2px 2px var(--color-light-shadow);
+    
+    box-shadow: 0 10px 8px 5px var(--color-default-shadow);
   }
 
   /* stylelint-disable-next-line plugin/selector-tag-no-without-class */

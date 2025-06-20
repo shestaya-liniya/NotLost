@@ -1,5 +1,5 @@
 import type { FC } from '../../../lib/teact/teact';
-import React, { memo, useMemo } from '../../../lib/teact/teact';
+import { memo, useMemo } from '../../../lib/teact/teact';
 import { withGlobal } from '../../../global';
 
 import type { ApiPeer } from '../../../api/types';
@@ -32,7 +32,7 @@ const MainSidebarTabProfile: FC<StateProps> = ({
     return ({ onTrigger }) => (
       <div className={selectorClassName} onClick={onTrigger}>
         <Avatar className={styles.profileAvatar} peer={peer} size="mini" forceRoundedRect />
-        <div style="color: var(--color-text)">
+        <div style="color: var(--color-text); font-size: 13px;">
           {peer?.usernames && peer.usernames[0] && peer.usernames[0].username}
         </div>
       </div>
@@ -52,11 +52,11 @@ const MainSidebarTabProfile: FC<StateProps> = ({
         /* onSelectArchived={onSelectArchived}
             onSelectContacts={onSelectContacts}
             onSelectSettings={onSelectSettings} */
-        // eslint-disable-next-line react/jsx-no-bind
+
         onSelectArchived={() => {}}
-        // eslint-disable-next-line react/jsx-no-bind
+
         onSelectContacts={() => {}}
-        // eslint-disable-next-line react/jsx-no-bind
+
         onSelectSettings={() => {}}
         onBotMenuOpened={markBotMenuOpen}
         onBotMenuClosed={unmarkBotMenuOpen}

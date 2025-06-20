@@ -1,20 +1,18 @@
 .SearchInput {
   position: relative;
-
   display: flex;
   align-items: center;
 
   width: 100%;
-  color: rgba(var(--color-text-secondary-rgb), 0.5);
-  background-color: var(--color-chat-hover);
-  border-radius: 0.5rem;
-  transition: border-color 0.15s ease;
-  border: 1px solid transparent;
-
-  display: flex;
-  align-items: center;
-
   padding-inline-end: 0.1875rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+
+  color: rgba(var(--color-text-secondary-rgb), 0.5);
+
+  background-color: var(--color-chat-hover);
+
+  transition: border-color 0.15s ease;
 
   &.with-picker-item {
     display: flex;
@@ -47,14 +45,15 @@
   input {
     height: 1.875rem;
     margin-bottom: 0;
-    font-size: 0.875rem;
+    padding: 0.5rem;
     border: none !important;
     border-radius: 0.5rem;
+
+    font-size: 0.875rem;
+
     background-color: transparent !important;
     box-shadow: none !important;
-    padding: 0.5rem;
     caret-color: var(--color-links) !important;
-
 
     &::placeholder {
       color: var(--color-text-secondary) !important;
@@ -62,7 +61,6 @@
   }
 
   .icon-container-left {
-    width: 1rem;
     flex-shrink: 0;
     width: 1.5rem;
     margin-inline-start: 0.75rem;
@@ -81,9 +79,9 @@
   }
 
   .search-icon, .back-icon {
-    color: var(--color-text-secondary);
     font-size: 1rem;
     line-height: 1;
+    color: var(--color-text-secondary);
   }
 
   .back-icon {

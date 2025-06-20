@@ -195,8 +195,8 @@
 
   input:checked ~ .Checkbox-main {
     &::before {
-      border-color: var(--color-primary);
-      background-color: var(--color-primary);
+      border-color: var(--color-links);
+      background-color: var(--color-links);
     }
 
     &::after {

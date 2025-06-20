@@ -333,6 +333,7 @@ export const INITIAL_GLOBAL_STATE: GlobalState = {
     byOrder: [],
     areLoaded: false,
   },
+  expandedState: {},
 };
 
 export const INITIAL_TAB_STATE: TabState = {
