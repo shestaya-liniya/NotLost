@@ -1,17 +1,21 @@
-import type { ApiInlineFolder, ApiSection, ApiWorkspace } from './types';
-import { NotLostLocalStorageKeys } from './types';
+import type { ApiWorkspace, ApiWorkspaceChatFolder, ApiWorkspaceLink, ApiWorkspaceLinkFolder } from './types';
+import { MAX_WORKSPACES, NotLostLocalStorageKeys } from './types';
 
 import { MAIN_IDB_STORE } from '../../util/browser/idb';
 
 class ApiWorkspaceLayer {
   store = MAIN_IDB_STORE;
 
-  private findSectionIndex(workspace: ApiWorkspace, sectionId: string) {
-    return workspace.sections.findIndex((s) => s.id === sectionId);
+  private findChatFolderIndex(workspace: ApiWorkspace, chatFolderId: string) {
+    return workspace.chatFolders.findIndex((f) => f.id === chatFolderId);
   }
 
-  private findFolderIndex(section: ApiSection, folderId: string) {
-    return section.folders.findIndex((f) => f.id === folderId);
+  private findLinkFolderIndex(workspace: ApiWorkspace, linkFolderId: string) {
+    return workspace.linkFolders.findIndex((f) => f.id === linkFolderId);
+  }
+
+  private findLinkIndex(workspace: ApiWorkspace, linkId: string) {
+    return workspace.links.findIndex((l) => l.id === linkId);
   }
 
   // Workspace
@@ -23,7 +27,13 @@ class ApiWorkspaceLayer {
   addWorkspace = async (newWorkspace: ApiWorkspace): Promise<void> => {
     await this.store.update<ApiWorkspace[]>(
       NotLostLocalStorageKeys.workspaces,
-      (old = []) => [...old, newWorkspace],
+      (old = []) => {
+        if (old.length < MAX_WORKSPACES) {
+          return [...old, newWorkspace];
+        }
+
+        return old;
+      },
     );
   };
 
@@ -54,9 +64,10 @@ class ApiWorkspaceLayer {
       NotLostLocalStorageKeys.workspaces,
       (old = []) => old.map((workspace) => {
         if (workspace.id === workspaceId) {
+          const chats = chatIds.map((chatId) => ({ chatId }));
           return {
             ...workspace,
-            chatIds,
+            chats,
           };
         }
         return workspace;
@@ -64,17 +75,15 @@ class ApiWorkspaceLayer {
     );
   };
 
-  // Workspace -> Sections
-
-  addSection = async (workspaceId: string, newSection: ApiSection): Promise<void> => {
+  addLinkIntoWorkspace = async (workspaceId: string, newLink: ApiWorkspaceLink): Promise<void> => {
     await this.store.update<ApiWorkspace[]>(
       NotLostLocalStorageKeys.workspaces,
       (old = []) => old.map((workspace) => {
         if (workspace.id === workspaceId) {
-          const sections = workspace.sections ?? [];
+          const links = workspace.links ?? [];
           return {
             ...workspace,
-            sections: [...sections, newSection],
+            links: [...links, newLink],
           };
         }
         return workspace;
@@ -82,148 +91,168 @@ class ApiWorkspaceLayer {
     );
   };
 
-  deleteSection = async (sectionId: string): Promise<void> => {
+  deleteLink = async (linkId: string): Promise<void> => {
     await this.store.update<ApiWorkspace[]>(
       NotLostLocalStorageKeys.workspaces,
       (old = []) =>
         old.map((workspace) => {
-          const sectionIndex = this.findSectionIndex(workspace, sectionId);
+          const linkIndex = this.findLinkIndex(workspace, linkId);
 
-          if (sectionIndex === -1) return workspace;
+          if (linkIndex === -1) return workspace;
 
           return {
             ...workspace,
-            sections: workspace.sections.filter((s) => s.id !== sectionId),
+            links: workspace.links.filter((l) => l.id !== linkId),
           };
         }),
     );
   };
 
-  renameSection = async (sectionId: string, newTitle: string): Promise<void> => {
+  // Workspace -> Chat folder
+
+  addChatFolder = async (workspaceId: string, newChatFolder: ApiWorkspaceChatFolder): Promise<void> => {
+    await this.store.update<ApiWorkspace[]>(
+      NotLostLocalStorageKeys.workspaces,
+      (old = []) => old.map((workspace) => {
+        if (workspace.id === workspaceId) {
+          const chatFolders = workspace.chatFolders ?? [];
+          return {
+            ...workspace,
+            chatFolders: [...chatFolders, newChatFolder],
+          };
+        }
+        return workspace;
+      }),
+    );
+  };
+
+  deleteChatFolder = async (chatFolderId: string): Promise<void> => {
     await this.store.update<ApiWorkspace[]>(
       NotLostLocalStorageKeys.workspaces,
       (old = []) =>
         old.map((workspace) => {
-          const sectionIndex = this.findSectionIndex(workspace, sectionId);
+          const folderIndex = this.findChatFolderIndex(workspace, chatFolderId);
 
-          if (sectionIndex === -1) return workspace;
+          if (folderIndex === -1) return workspace;
 
           return {
             ...workspace,
-            sections: workspace.sections.map((section, idx) =>
-              idx === sectionIndex ? { ...section, title: newTitle } : section,
+            chatFolders: workspace.chatFolders.filter((f) => f.id !== chatFolderId),
+          };
+        }),
+    );
+  };
+
+  renameChatFolder = async (chatFolderId: string, newTitle: string): Promise<void> => {
+    await this.store.update<ApiWorkspace[]>(
+      NotLostLocalStorageKeys.workspaces,
+      (old = []) =>
+        old.map((workspace) => {
+          const folderIndex = this.findChatFolderIndex(workspace, chatFolderId);
+
+          if (folderIndex === -1) return workspace;
+
+          return {
+            ...workspace,
+            chatFolders: workspace.chatFolders.map((f, idx) =>
+              idx === folderIndex ? { ...f, title: newTitle } : f,
             ),
           };
         }),
     );
   };
 
-  updateSectionChats = async (sectionId: string, chatIds: string[]): Promise<void> => {
+  updateChatFolderChats = async (chatFolderId: string, chatIds: string[]): Promise<void> => {
     await this.store.update<ApiWorkspace[]>(
       NotLostLocalStorageKeys.workspaces,
       (old = []) =>
         old.map((workspace) => {
-          const sectionIndex = this.findSectionIndex(workspace, sectionId);
+          const folderIndex = this.findChatFolderIndex(workspace, chatFolderId);
 
-          if (sectionIndex === -1) return workspace;
+          if (folderIndex === -1) return workspace;
+
+          const updatedChats = chatIds.map((chatId) => ({ chatId }));
 
           return {
             ...workspace,
-            sections: workspace.sections.map((section, idx) =>
-              idx === sectionIndex ? { ...section, chatIds } : section,
+            chatFolders: workspace.chatFolders.map((f, idx) =>
+              idx === folderIndex ? { ...f, chats: updatedChats } : f,
             ),
           };
         }),
     );
   };
 
-  // Workspace -> Section -> Folders
+  // Workspace -> Link folder
 
-  addFolder = async (sectionId: string, newFolder: ApiInlineFolder): Promise<void> => {
+  addLinkFolder = async (workspaceId: string, newLinkFolder: ApiWorkspaceLinkFolder): Promise<void> => {
     await this.store.update<ApiWorkspace[]>(
       NotLostLocalStorageKeys.workspaces,
       (old = []) => old.map((workspace) => {
-        const sectionIndex = this.findSectionIndex(workspace, sectionId);
-
-        if (sectionIndex === -1) return workspace;
-
-        return {
-          ...workspace,
-          sections: workspace.sections.map((s, idx) =>
-            idx === sectionIndex ? { ...s, folders: [...s.folders, newFolder] } : s,
-          ),
-        };
-      }),
-    );
-  };
-
-  deleteFolder = async (folderId: string): Promise<void> => {
-    await this.store.update<ApiWorkspace[]>(
-      NotLostLocalStorageKeys.workspaces,
-      (old = []) => old.map((workspace) => {
-        const updatedSections = workspace.sections.map((section) => {
-          if (!section.folders) return section;
-
-          const folderIndex = this.findFolderIndex(section, folderId);
-
-          if (folderIndex === -1) return section;
-
+        if (workspace.id === workspaceId) {
+          const linkFolders = workspace.linkFolders ?? [];
           return {
-            ...section,
-            folders: section.folders.filter((f) => f.id !== folderId),
+            ...workspace,
+            linkFolders: [...linkFolders, newLinkFolder],
           };
-        });
-
-        return { ...workspace, sections: updatedSections };
+        }
+        return workspace;
       }),
     );
   };
 
-  renameFolder = async (folderId: string, newTitle: string): Promise<void> => {
+  deleteLinkFolder = async (linkFolderId: string): Promise<void> => {
     await this.store.update<ApiWorkspace[]>(
       NotLostLocalStorageKeys.workspaces,
-      (old = []) => old.map((workspace) => {
-        const updatedSections = workspace.sections.map((section) => {
-          if (!section.folders) return section;
+      (old = []) =>
+        old.map((workspace) => {
+          const folderIndex = this.findLinkFolderIndex(workspace, linkFolderId);
 
-          const folderIndex = this.findFolderIndex(section, folderId);
-
-          if (folderIndex === -1) return section;
+          if (folderIndex === -1) return workspace;
 
           return {
-            ...section,
-            folders: section.folders.map((folder, idx) =>
-              idx === folderIndex ? { ...folder, title: newTitle } : folder,
+            ...workspace,
+            linkFolders: workspace.linkFolders.filter((f) => f.id !== linkFolderId),
+          };
+        }),
+    );
+  };
+
+  renameLinkFolder = async (linkFolderId: string, newTitle: string): Promise<void> => {
+    await this.store.update<ApiWorkspace[]>(
+      NotLostLocalStorageKeys.workspaces,
+      (old = []) =>
+        old.map((workspace) => {
+          const folderIndex = this.findLinkFolderIndex(workspace, linkFolderId);
+
+          if (folderIndex === -1) return workspace;
+
+          return {
+            ...workspace,
+            linkFolders: workspace.linkFolders.map((f, idx) =>
+              idx === folderIndex ? { ...f, title: newTitle } : f,
             ),
           };
-        });
-
-        return { ...workspace, sections: updatedSections };
-      }),
+        }),
     );
   };
 
-  updateFolderChats = async (folderId: string, chatIds: string[]): Promise<void> => {
+  updateLinkFolderLinks = async (linkFolderId: string, links: ApiWorkspaceLink[]): Promise<void> => {
     await this.store.update<ApiWorkspace[]>(
       NotLostLocalStorageKeys.workspaces,
-      (old = []) => old.map((workspace) => {
-        const updatedSections = workspace.sections.map((section) => {
-          if (!section.folders) return section;
+      (old = []) =>
+        old.map((workspace) => {
+          const folderIndex = this.findLinkFolderIndex(workspace, linkFolderId);
 
-          const folderIndex = this.findFolderIndex(section, folderId);
-
-          if (folderIndex === -1) return section;
+          if (folderIndex === -1) return workspace;
 
           return {
-            ...section,
-            folders: section.folders.map((folder, idx) =>
-              idx === folderIndex ? { ...folder, chatIds } : folder,
+            ...workspace,
+            linkFolders: workspace.linkFolders.map((f, idx) =>
+              idx === folderIndex ? { ...f, links } : f,
             ),
           };
-        });
-
-        return { ...workspace, sections: updatedSections };
-      }),
+        }),
     );
   };
 }

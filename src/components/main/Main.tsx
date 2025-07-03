@@ -8,6 +8,7 @@ import {
 import { addExtraClass } from '../../lib/teact/teact-dom';
 import { getActions, getGlobal, withGlobal } from '../../global';
 
+import type { ApiWorkspace } from '../../api/notlost/types';
 import type { ApiChatFolder, ApiLimitTypeWithModal, ApiUser } from '../../api/types';
 import type { TabState } from '../../global/types';
 import { ElectronEvent } from '../../types/electron';
@@ -145,6 +146,9 @@ type StateProps = {
   isSynced?: boolean;
   isAccountFrozen?: boolean;
   isAppConfigLoaded?: boolean;
+  workspaces?: ApiWorkspace[];
+  chatsAreLoaded?: boolean;
+  chatFoldersAreLoaded?: boolean;
 };
 
 const APP_OUTDATED_TIMEOUT_MS = 5 * 60 * 1000; // 5 min
@@ -199,6 +203,9 @@ const Main = ({
   currentUserId,
   isAccountFrozen,
   isAppConfigLoaded,
+  workspaces,
+  chatsAreLoaded,
+  chatFoldersAreLoaded,
 }: OwnProps & StateProps) => {
   const {
     initMain,
@@ -256,7 +263,9 @@ const Main = ({
     loadBotFreezeAppeal,
     loadAllChats,
     loadAllStories,
+    loadChatFolders,
     loadAllHiddenStories,
+    createInitialWorkspace,
   } = getActions();
 
   if (DEBUG && !DEBUG_isLogged) {
@@ -329,6 +338,7 @@ const Main = ({
       loadAllChats({ listType: 'saved' });
       loadAllStories();
       loadAllHiddenStories();
+      loadChatFolders();
       loadRecentReactions();
       loadDefaultTagReactions();
       loadAttachBots();
@@ -462,6 +472,13 @@ const Main = ({
   });
   const willAnimateLeftColumnRef = useRef(false);
   const forceUpdate = useForceUpdate();
+
+  // NotLost initial workspace creation
+  useEffect(() => {
+    if (workspaces?.length === 0 && chatFoldersAreLoaded && chatsAreLoaded) {
+      createInitialWorkspace();
+    }
+  }, [chatFoldersAreLoaded, chatsAreLoaded, workspaces]);
 
   // Handle opening middle column
   useSyncEffect(([prevIsLeftColumnOpen]) => {
@@ -706,6 +723,9 @@ export default memo(withGlobal<OwnProps>(
       isSynced: global.isSynced,
       isAccountFrozen,
       isAppConfigLoaded: global.isAppConfigLoaded,
+      workspaces: global.workspaces.byOrder,
+      chatsAreLoaded: global.chats.isFullyLoaded.active,
+      chatFoldersAreLoaded: global.chatFolders.areLoaded,
     };
   },
 )(Main));

@@ -409,6 +409,7 @@ function reduceGlobal<T extends GlobalState>(global: T) {
       'timezones',
       'availableEffectById',
       'expandedState',
+      'chatFilters',
     ]),
     lastIsChatInfoShown: !getIsMobile() ? global.lastIsChatInfoShown : undefined,
     customEmojis: reduceCustomEmojis(global),

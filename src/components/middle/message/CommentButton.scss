@@ -1,5 +1,4 @@
 .CommentButton {
-  --background-color: var(--color-background);
   --hover-color: var(--color-chat-hover);
 
   cursor: var(--custom-cursor, pointer);
@@ -18,10 +17,8 @@
   font-size: 0.9375rem;
   font-weight: var(--font-weight-medium);
   line-height: 2.125rem;
-  color: var(--accent-color);
+  color: var(--color-primary);
   white-space: nowrap;
-
-  background: var(--background-color);
 
   transition: background-color 0.15s, color 0.15s;
 
@@ -215,7 +212,7 @@
       overflow: hidden;
 
       margin-inline-end: 0;
-      border: 2px solid var(--color-background);
+      border: 1px solid var(--color-button);
       /* stylelint-disable-next-line plugin/no-low-performance-animation-properties */
       transition: border 0.15s;
 

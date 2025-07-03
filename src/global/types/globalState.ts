@@ -273,6 +273,11 @@ export type GlobalState = {
     byId: Record<number, ApiChatFolder>;
     invites: Record<number, ApiChatlistExportedInvite[]>;
     recommended?: ApiChatFolder[];
+    areLoaded?: boolean;
+  };
+
+  chatFilters: {
+    shouldShowLastMessage: boolean;
   };
 
   phoneCall?: ApiPhoneCall;
@@ -457,9 +462,14 @@ export type GlobalState = {
     activeId: string | undefined;
     byOrder: ApiWorkspace[];
     areLoaded: boolean;
+    selectedItemId?: string;
+    sidebarIsOpen?: boolean;
   };
   expandedState: Record<string, boolean>;
 
+  webContentsViewIsLoading?: boolean;
+  webContentsViewIsVisible?: boolean;
+  webContentsViewError?: string;
 };
 
 export type RequiredGlobalState = GlobalState & { _: never };

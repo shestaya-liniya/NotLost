@@ -2,8 +2,8 @@ import type { FC } from '@teact';
 import { memo, useCallback, useEffect, useMemo, useState } from '@teact';
 import { getActions, withGlobal } from '../../../global';
 
-import type { ApiWorkspace } from '../../../api/notlost/types';
 import type { MenuItemContextAction } from '../../ui/ListItem';
+import { type ApiWorkspace, MAX_WORKSPACES } from '../../../api/notlost/types';
 import { LeftColumnContent } from '../../../types';
 
 import { selectTabState } from '../../../global/selectors';
@@ -42,8 +42,11 @@ const MainSidebarWorkspaces: FC<OwnProps & StateProps> = ({
   const [isAddingNewSpace, setIsAddingNewSpace] = useState(false);
 
   const handleStartAddingNewSpace = useCallback(() => {
+    if (workspaces.length >= MAX_WORKSPACES) return undefined;
+    if (workspaces.length === 0) return undefined; // temporaly lock before initial workspaces created, yeah very dump
+
     setIsAddingNewSpace(true);
-  }, []);
+  }, [workspaces.length]);
 
   const handleCancelAddingNewSpace = useCallback(() => {
     setIsAddingNewSpace(false);
@@ -133,6 +136,7 @@ const MainSidebarWorkspaces: FC<OwnProps & StateProps> = ({
           onAddClick={handleStartAddingNewSpace}
           className={styles.sidebarAccordionSection}
         >
+          {workspaces.length === 0 && <div className={styles.workspacesLoading}>Loading...</div>}
           {workspaceTabs}
           {isAddingNewSpace && (
             <Accordion
@@ -140,6 +144,7 @@ const MainSidebarWorkspaces: FC<OwnProps & StateProps> = ({
               leftIconName="lamp"
               onRenameCancel={handleCancelAddingNewSpace}
               onRenameFinish={handleAddNewWorkspace}
+              className={styles.newWorkspaceInput}
             />
           )}
         </Accordion>

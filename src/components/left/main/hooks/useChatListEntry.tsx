@@ -121,7 +121,7 @@ export default function useChatListEntry({
       : undefined;
 
     return (
-      <p className="last-message shared-canvas-container" dir={oldLang.isRtl ? 'auto' : 'ltr'}>
+      <div className="last-message shared-canvas-container" dir={oldLang.isRtl ? 'auto' : 'ltr'}>
         {senderName && (
           <>
             <span className="sender-name">{renderText(senderName)}</span>
@@ -131,7 +131,7 @@ export default function useChatListEntry({
         {!isSavedDialog && lastMessage.forwardInfo && (<Icon name="share-filled" className="chat-prefix-icon" />)}
         {lastMessage.replyInfo?.type === 'story' && (<Icon name="story-reply" className="chat-prefix-icon" />)}
         {renderSummary(lastMessage, observeIntersection, mediaBlobUrl || mediaThumbnail, isRoundVideo)}
-      </p>
+      </div>
     );
   }, [
     chat, chatId, draft, isRoundVideo, isTopic, oldLang, lastMessage, lastMessageSender, lastMessageTopic,

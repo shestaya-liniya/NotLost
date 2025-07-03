@@ -1,6 +1,5 @@
 import { app, nativeImage } from 'electron';
 import contextMenu from 'electron-context-menu';
-import electronDragClick from 'electron-drag-click';
 import path from 'path';
 
 import { initDeeplink } from './deeplink';
@@ -8,9 +7,9 @@ import { IS_MAC_OS, IS_PRODUCTION, IS_WINDOWS } from './utils';
 import { createWindow, setupCloseHandlers, setupElectronActionHandlers } from './window';
 
 initDeeplink();
-if (IS_MAC_OS) {
+/* if (IS_MAC_OS) {
   electronDragClick();
-}
+} */
 
 contextMenu({
   showLearnSpelling: false,

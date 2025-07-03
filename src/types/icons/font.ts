@@ -87,6 +87,7 @@ export type FontIconName =
   | 'favorite-filled'
   | 'favorite'
   | 'file-badge'
+  | 'filter'
   | 'flag'
   | 'folder-badge'
   | 'folder'

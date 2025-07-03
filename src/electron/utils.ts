@@ -1,5 +1,5 @@
 import type { Point } from 'electron';
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, net } from 'electron';
 import { Conf } from 'electron-conf/main';
 import fs from 'fs';
 
@@ -80,7 +80,7 @@ export function checkIsWebContentsUrlAllowed(url: string): boolean {
 }
 
 export const WINDOW_BUTTONS_POSITION: Record<WindowButtonsPosition, Point> = {
-  standard: { x: 10, y: 20 },
+  standard: { x: 4, y: 4 },
   lowered: { x: 10, y: 52 },
 };
 
@@ -99,3 +99,29 @@ export const forceQuit = {
     return this.value;
   },
 };
+
+export async function getImageAsDataURL(url: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const request = net.request(url);
+
+    request.on('response', (response) => {
+      const chunks: Buffer[] = [];
+      const contentType = response.headers['content-type'][0] || 'image/png';
+
+      response.on('data', (chunk) => {
+        chunks.push(chunk);
+      });
+
+      response.on('end', () => {
+        const buffer = Buffer.concat(chunks);
+        const base64 = buffer.toString('base64');
+        resolve(`data:${contentType};base64,${base64}`);
+      });
+
+      response.on('error', reject);
+    });
+
+    request.on('error', reject);
+    request.end();
+  });
+}

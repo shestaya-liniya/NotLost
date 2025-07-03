@@ -10,9 +10,7 @@ import {
   exitMessageSelectMode, replaceTabThreadParam, updateCurrentMessageList, updateRequestedChatTranslation,
 } from '../../reducers';
 import { updateTabState } from '../../reducers/tabs';
-import {
-  selectChat, selectCurrentMessageList, selectTabState,
-} from '../../selectors';
+import { selectCurrentMessageList, selectTabState } from '../../selectors';
 
 addActionHandler('processOpenChatOrThread', (global, actions, payload): ActionReturnType => {
   const {
@@ -21,7 +19,6 @@ addActionHandler('processOpenChatOrThread', (global, actions, payload): ActionRe
     type = 'thread',
     shouldReplaceHistory = false,
     shouldReplaceLast = false,
-    noForumTopicPanel,
     tabId = getCurrentTabId(),
   } = payload;
 
@@ -72,7 +69,7 @@ addActionHandler('processOpenChatOrThread', (global, actions, payload): ActionRe
     }, tabId);
   }
 
-  if (chatId) {
+  /* if (chatId) {
     const chat = selectChat(global, chatId);
 
     if (chat?.isForum && !noForumTopicPanel) {
@@ -80,7 +77,7 @@ addActionHandler('processOpenChatOrThread', (global, actions, payload): ActionRe
     } else if (chatId !== selectTabState(global, tabId).forumPanelChatId) {
       actions.closeForumPanel({ tabId });
     }
-  }
+  } */
 
   actions.updatePageTitle({ tabId });
 

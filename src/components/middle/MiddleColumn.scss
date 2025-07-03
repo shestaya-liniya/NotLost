@@ -10,6 +10,7 @@
 
   .messages-layout {
     --slide-transition: 450ms cubic-bezier(0.25, 1, 0.5, 1);
+    -webkit-app-region: no-drag;
 
     position: relative;
 
@@ -208,6 +209,51 @@
       body.is-symbol-menu-open & {
         transform: translate3d(0, calc(-1 * (var(--symbol-menu-height))), 0);
       }
+    }
+  }
+
+  .webContentsShimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: var(--z-middle-web-contents-shimmer);
+
+    background: linear-gradient(-45deg, var(--color-background-darkest) 40%, var(--color-background) 50%, var(--color-background-darkest) 60%);
+    background-size: 400%;
+    background-position-x: 100%;
+    animation: shimmer 1s infinite ease-in-out;
+  }
+
+  @keyframes shimmer {
+    to {
+      background-position-x: 0%
+    }
+  }
+
+  .webContentsError {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: var(--z-middle-web-contents-shimmer);
+
+    .webContentsErrorTitle {
+      margin-top: 4rem;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .webContentsErrorMessage {
+      padding: 0.5rem;
+      margin-top: 1rem;
+      background-color: rgba(red, 0.1);
+      color: var(--color-error)
     }
   }
 

@@ -3,6 +3,8 @@ export enum ElectronEvent {
   UPDATE_ERROR = 'update-error',
   UPDATE_AVAILABLE = 'update-available',
   DEEPLINK = 'deeplink',
+  ON_WEB_CONTENTS_TABS_CHANGE = 'on-web-contents-tabs-change',
+  ON_WEB_CONTENTS_TAB_META_DATA = 'on-web-contents-tab-meta-data',
 }
 
 export enum ElectronAction {
@@ -17,7 +19,26 @@ export enum ElectronAction {
   SET_IS_TRAY_ICON_ENABLED = 'set-is-tray-icon-enabled',
   GET_IS_TRAY_ICON_ENABLED = 'get-is-tray-icon-enabled',
   RESTORE_LOCAL_STORAGE = 'restore-local-storage',
+  GET_WEB_CONTENTS_TABS = 'get-web-contents-tabs',
+  CLOSE_WEB_CONTENTS_TAB = 'close-web-contents-tab',
+  SET_WEB_CONTENTS_VIEW_BOUNDS = 'set-web-contents-view-bounds',
+  SET_WEB_CONTENTS_VIEW_URL = 'set-web-contents-view-url',
+  SET_WEB_CONTENTS_VIEW_VISIBLE = 'set-web-contents-view-visible',
+  ON_WEB_CONTENTS_VIEW_FAVICON = 'on-web-contents-view-favicon',
+  ON_WEB_CONTENTS_VIEW_TITLE = 'on-web-contents-view-title',
 }
+export type WebContentsViewBounds = {
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
+export type WebContentsTabInfo = {
+  id: string;
+  title: string;
+  url: string;
+};
 
 export type WindowButtonsPosition = 'standard' | 'lowered';
 
@@ -37,6 +58,11 @@ export interface ElectronApi {
   setIsTrayIconEnabled: (value: boolean) => Promise<void>;
   getIsTrayIconEnabled: () => Promise<boolean>;
   restoreLocalStorage: () => Promise<void>;
+  getWebContentsTabs: () => Promise<WebContentsTabInfo[]>;
+  closeWebContentsTab: (tabId: string) => Promise<void>;
+  setWebContentsViewBounds: (bounds: WebContentsViewBounds) => Promise<void>;
+  setWebContentsViewUrl: (url: string) => Promise<void>;
+  setWebContentsViewVisible: (isVisible: boolean) => Promise<void>;
 
   on: (eventName: ElectronEvent, callback: any) => VoidFunction;
 }

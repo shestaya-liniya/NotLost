@@ -1,8 +1,8 @@
 import type {
   ElementRef } from '../../lib/teact/teact';
-import type React from '../../lib/teact/teact';
 import {
-  memo, useEffect, useMemo,
+  memo, useCallback, useEffect, useMemo,
+  useRef,
   useState,
 } from '../../lib/teact/teact';
 import { getActions, withGlobal } from '../../global';
@@ -64,7 +64,7 @@ import {
   selectUserFullInfo,
 } from '../../global/selectors';
 import {
-  IS_ANDROID, IS_ELECTRON, IS_IOS, IS_SAFARI, IS_TRANSLATION_SUPPORTED, MASK_IMAGE_DISABLED,
+  IS_ANDROID, IS_IOS, IS_SAFARI, IS_TRANSLATION_SUPPORTED, MASK_IMAGE_DISABLED,
 } from '../../util/browser/windowEnvironment';
 import buildClassName from '../../util/buildClassName';
 import buildStyle from '../../util/buildStyle';
@@ -81,6 +81,7 @@ import useOldLang from '../../hooks/useOldLang';
 import usePrevDuringAnimation from '../../hooks/usePrevDuringAnimation';
 import usePreviousDeprecated from '../../hooks/usePreviousDeprecated';
 import { useResize } from '../../hooks/useResize';
+import useResizeObserver from '../../hooks/useResizeObserver';
 import useSyncEffect from '../../hooks/useSyncEffect';
 import useWindowSize from '../../hooks/window/useWindowSize';
 import usePinnedMessage from './hooks/usePinnedMessage';
@@ -98,6 +99,7 @@ import { DropAreaState } from './composer/DropArea';
 import EmojiInteractionAnimation from './EmojiInteractionAnimation.async';
 import FloatingActionButtons from './FloatingActionButtons';
 import FrozenAccountPlaceholder from './FrozenAccountPlaceholder';
+import GreetingsBlock from './GreetingsBlock';
 import MessageList from './MessageList';
 import MessageSelectToolbar from './MessageSelectToolbar.async';
 import MiddleHeader from './MiddleHeader';
@@ -105,6 +107,7 @@ import MiddleHeaderPanes from './MiddleHeaderPanes';
 import PremiumRequiredPlaceholder from './PremiumRequiredPlaceholder';
 import ReactorListModal from './ReactorListModal.async';
 import MiddleSearch from './search/MiddleSearch.async';
+import WebContentsError from './WebContentsError';
 
 import './MiddleColumn.scss';
 import styles from './MiddleColumn.module.scss';
@@ -163,6 +166,10 @@ type StateProps = {
   paidMessagesStars?: number;
   isAccountFrozen?: boolean;
   freezeAppealChat?: ApiChat;
+  workspaceSidebarIsOpen?: boolean;
+  webContentsViewIsLoading?: boolean;
+  webContentsViewError?: string;
+  webContentsViewIsVisible?: boolean;
 };
 
 function isImage(item: DataTransferItem) {
@@ -226,6 +233,10 @@ function MiddleColumn({
   paidMessagesStars,
   isAccountFrozen,
   freezeAppealChat,
+  workspaceSidebarIsOpen,
+  webContentsViewIsLoading,
+  webContentsViewError,
+  webContentsViewIsVisible,
 }: OwnProps & StateProps) {
   const {
     openChat,
@@ -243,6 +254,8 @@ function MiddleColumn({
     resetLeftColumnWidth,
     unblockUser,
   } = getActions();
+
+  const containerRef = useRef<HTMLDivElement | undefined>(undefined);
 
   const { width: windowWidth } = useWindowSize();
   const { isTablet, isDesktop } = useAppLayout();
@@ -442,7 +455,6 @@ function MiddleColumn({
     backgroundColor && styles.customBgColor,
     customBackground && isBackgroundBlurred && styles.blurred,
     isRightColumnShown && styles.withRightColumn,
-    IS_ELECTRON && !(renderingChatId && renderingThreadId) && styles.draggable,
   );
 
   const messagingDisabledClassName = buildClassName(
@@ -494,8 +506,33 @@ function MiddleColumn({
   );
   const withExtraShift = Boolean(isMessagingDisabled || isSelectModeActive);
 
+  useResizeObserver(containerRef, (entry) => {
+    updateWebContentsViewBounds(entry.target.getBoundingClientRect());
+  });
+
+  const updateWebContentsViewBounds = useCallback((rect: DOMRect) => {
+    const workspaceSidebarWidth = 300;
+    const calcX = workspaceSidebarIsOpen ? rect.left + workspaceSidebarWidth + 1 : rect.left + 1; // 1px: include left column border
+    const calcWidth = workspaceSidebarIsOpen ? rect.width - workspaceSidebarWidth - 1 : rect.width - 1;
+
+    window.electron?.setWebContentsViewBounds({
+      x: calcX,
+      y: rect.top,
+      height: window.innerHeight - 22, // bottom inset (padding + border)
+      width: calcWidth,
+    });
+  }, [workspaceSidebarIsOpen]);
+
+  useEffect(() => {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (rect) {
+      updateWebContentsViewBounds(rect);
+    }
+  }, [updateWebContentsViewBounds, workspaceSidebarIsOpen]);
+
   return (
     <div
+      ref={containerRef}
       id="MiddleColumn"
       className={className}
       onTransitionEnd={handleCssTransitionEnd}
@@ -525,6 +562,9 @@ function MiddleColumn({
       />
       <div id="middle-column-portals" />
       <div id="middle-column-left-sidebar-portals" style="height: 100%" />
+      {webContentsViewIsLoading && <div className="webContentsShimmer" />}
+      {webContentsViewError && <WebContentsError errorMessage={webContentsViewError} />}
+      {!chatId && !webContentsViewIsVisible && <GreetingsBlock />}
       {Boolean(renderingChatId && renderingThreadId) && (
         <>
           <div className="messages-layout" onDragEnter={renderingCanPost ? handleDragEnter : undefined}>
@@ -766,6 +806,10 @@ export default memo(withGlobal<OwnProps>(
       currentTransitionKey: Math.max(0, messageLists.length - 1),
       activeEmojiInteractions,
       leftColumnWidth,
+      workspaceSidebarIsOpen: global.workspaces.sidebarIsOpen,
+      webContentsViewIsLoading: global.webContentsViewIsLoading,
+      webContentsViewIsVisible: global.webContentsViewIsVisible,
+      webContentsViewError: global.webContentsViewError,
     };
 
     if (!currentMessageList) {

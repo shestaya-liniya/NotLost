@@ -24,44 +24,47 @@ const MainSidebarTabProfile: FC<StateProps> = ({
 }) => {
   const [isBotMenuOpen, markBotMenuOpen, unmarkBotMenuOpen] = useFlag();
 
-  const selectorClassName = buildClassName(
+  const profileSelectorClassName = buildClassName(
     styles.selector,
   );
 
   const TabProfile: FC<{ onTrigger: () => void; isOpen?: boolean }> = useMemo(() => {
     return ({ onTrigger }) => (
-      <div className={selectorClassName} onClick={onTrigger}>
-        <Avatar className={styles.profileAvatar} peer={peer} size="mini" forceRoundedRect />
-        <div style="color: var(--color-text); font-size: 13px;">
+      <div className={profileSelectorClassName} onClick={onTrigger}>
+        <Avatar className={styles.profileAvatar} peer={peer} size="tiny" forceRoundedRect />
+        <div style="color: var(--color-text-secondary); font-size: 13px;">
           {peer?.usernames && peer.usernames[0] && peer.usernames[0].username}
         </div>
       </div>
     );
-  }, [peer, selectorClassName]);
+  }, [peer, profileSelectorClassName]);
 
   return (
-    <DropdownMenu
-      trigger={TabProfile}
-      footer="Footer"
-      forceOpen={isBotMenuOpen}
-      positionX="left"
-      transformOriginX={200}
-      positionY="top"
-    >
-      <LeftSideMenuItems
+    <div className={styles.profileSelectorContainer}>
+      <DropdownMenu
+        trigger={TabProfile}
+        footer="Footer"
+        forceOpen={isBotMenuOpen}
+        positionX="left"
+        transformOriginX={300}
+        positionY="bottom"
+      >
+        <LeftSideMenuItems
         /* onSelectArchived={onSelectArchived}
             onSelectContacts={onSelectContacts}
             onSelectSettings={onSelectSettings} */
 
-        onSelectArchived={() => {}}
+          onSelectArchived={() => {}}
 
-        onSelectContacts={() => {}}
+          onSelectContacts={() => {}}
 
-        onSelectSettings={() => {}}
-        onBotMenuOpened={markBotMenuOpen}
-        onBotMenuClosed={unmarkBotMenuOpen}
-      />
-    </DropdownMenu>
+          onSelectSettings={() => {}}
+          onBotMenuOpened={markBotMenuOpen}
+          onBotMenuClosed={unmarkBotMenuOpen}
+        />
+      </DropdownMenu>
+    </div>
+
   );
 };
 

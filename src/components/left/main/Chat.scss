@@ -1,7 +1,7 @@
 @use "../../../styles/mixins";
 
 .Chat {
-  --background-color: var(--color-background);
+  --background-color: transparent;
   --thumbs-background: var(--background-color);
 
   --z-forum-indicator: 2;
@@ -61,19 +61,19 @@
     }
 
     .shadow-container {
-      box-shadow: 0 10px 20px 20px var(--color-chat-hover);
+      box-shadow: 0 10px 20px 20px var(--background-color);
     }
   }
 
   &:hover:not(.selected) {
     .shadow-container {
-      box-shadow: 0 10px 20px 20px var(--color-chat-hover);
+      box-shadow: 0 10px 20px 20px var(--background-color);
     }
   }
 
   &.selected {
     .shadow-container {
-      box-shadow: 0 10px 20px 20px var(--color-chat-active);
+      box-shadow: 0 10px 20px 20px var(--background-color);
     }
   }
 

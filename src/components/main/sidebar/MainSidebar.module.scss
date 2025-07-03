@@ -3,9 +3,13 @@
   flex-direction: column;
   align-items: center;
 
+  min-width: 180px;
   width: 180px;
-  min-height: 100%;
-  padding: 1rem 1rem 0;
+  max-height: 100%;
+  padding: 0 0.75rem;
+  margin-top: 1.5rem;
+
+  -webkit-app-region: no-drag;
 }
 
 .Tabs {
@@ -31,5 +35,16 @@
 
   :global(.ListItem-button) {
     padding: 0;
+    min-height: 0;
   }
+}
+
+.NewWorkspaceInput {
+  margin-left: -0.25rem;
+}
+
+.WorkspacesLoading {
+  padding-left: 0.5rem;
+  font-size: 12px;
+  color: var(--color-text-secondary);
 }

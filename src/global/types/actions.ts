@@ -1,4 +1,4 @@
-import type { ApiSection } from '../../api/notlost/types';
+import type { ApiWorkspaceLink } from '../../api/notlost/types';
 import type {
   ApiAttachBot,
   ApiAttachment,
@@ -1053,6 +1053,9 @@ export interface ActionPayloads {
     days: number;
   } & WithTabId | undefined;
   loadAccountDaysTtl: undefined;
+
+  // Chats filters
+  toggleShowLastMessage: undefined;
 
   // Chats
   loadPeerSettings: {
@@ -2669,7 +2672,10 @@ export interface ActionPayloads {
 
   // Workspace
   loadAllWorkspaces: undefined;
+  createInitialWorkspace: undefined;
   setActiveWorkspaceId: string;
+  setWorkspaceSelectedItemId: string | undefined;
+  setWorkspaceSidebarOpen: boolean;
 
   addNewWorkspace: {
     title: string;
@@ -2686,46 +2692,71 @@ export interface ActionPayloads {
     workspaceId: string;
     chatIds: string[];
   };
-
-  // Section
-  addNewSectionIntoWorkspace: {
+  deleteChatFromWorkspace: {
+    workspaceId: string;
+    chatId: string;
+  };
+  addLinkIntoWorkspace: {
     workspaceId: string;
     title: string;
-    callback?: (section: ApiSection) => void;
+    url: string;
   };
-  deleteSectionFromWorkspace: {
-    sectionId: string;
-  };
-  renameWorkspaceSection: {
-    sectionId: string;
-    newTitle: string;
-  };
-  updateSectionChats: {
-    sectionId: string;
-    chatIds: string[];
+  deleteLinkFromWorkspace: {
+    linkId: string;
   };
 
-  // Folder
-  addNewFolderIntoSection: {
-    sectionId: string;
+  // Chat folder
+  addChatFolderIntoWorkspace: {
+    workspaceId: string;
     title: string;
   };
-  deleteFolderFromSection: {
-    folderId: string;
+  deleteChatFolderFromWorkspace: {
+    chatFolderId: string;
   };
-  renameSectionFolder: {
-    folderId: string;
+  renameChatFolderInWorkspace: {
+    chatFolderId: string;
     newTitle: string;
   };
-  updateFolderChats: {
-    folderId: string;
+  updateChatFolderChats: {
+    chatFolderId: string;
     chatIds: string[];
+  };
+  deleteChatFromChatsFolder: {
+    chatFolderId: string;
+    chatId: string;
+  };
+
+  // Link Folder
+  addLinkFolderIntoWorkspace: {
+    workspaceId: string;
+    title: string;
+  };
+  deleteLinkFolderFromWorkspace: {
+    linkFolderId: string;
+  };
+  renameLinkFolderInWorkspace: {
+    linkFolderId: string;
+    newTitle: string;
+  };
+  updateLinkFolderLinks: {
+    linkFolderId: string;
+    links: ApiWorkspaceLink[];
   };
 
   persistExpandedState: {
     id: string;
     isExpanded: boolean;
   };
+
+  // Web contents view
+  loadWebContentsViewUrl: {
+    url: string;
+  };
+  closeWebContentsView: undefined;
+  closeWebContentsTab: {
+    tabId: string;
+  };
+
 }
 
 export interface RequiredActionPayloads {

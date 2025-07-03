@@ -140,9 +140,7 @@
     }
 
     @media (hover: hover) {
-      &:hover,
-      &:focus,
-      &:active {
+      &:hover {
         text-decoration: none;
         background: var(--color-background-compact-menu-hover);
       }
@@ -172,8 +170,7 @@
   }
 
   @media (hover: hover) {
-    &:hover,
-    &:focus {
+    &:hover {
       color: inherit;
       text-decoration: none;
       background-color: var(--color-chat-hover);

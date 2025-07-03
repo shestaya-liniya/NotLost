@@ -6,9 +6,6 @@ import type { MenuItemContextAction } from '../ListItem';
 
 import buildClassName from '../../../util/buildClassName';
 
-import { ChatAnimationTypes } from '../../left/main/hooks/useChatAnimationType';
-
-import Chat from '../../left/main/Chat';
 import ListItem from '../ListItem';
 import AccordionHeader from './AccordionHeader';
 
@@ -16,7 +13,6 @@ import './Accordion.scss';
 
 type OwnProps = {
   title?: string;
-  chatIds?: string[];
   children?: TeactNode;
   leftIconName?: IconName;
   isHighlighted?: boolean;
@@ -24,17 +20,19 @@ type OwnProps = {
   isRenaming?: boolean;
   withInnerPadding?: boolean;
   contextActions?: MenuItemContextAction[];
+  placeholder?: string;
   onChange?: (isExpanded: boolean) => void;
   onAddClick?: NoneToVoidFunction;
   onMoreClick?: NoneToVoidFunction;
   onRenameFinish?: (newTitle: string) => void;
   onRenameCancel?: NoneToVoidFunction;
   className?: string;
+  onHeaderMouseEnter?: NoneToVoidFunction;
+  onHeaderMouseLeave?: NoneToVoidFunction;
 };
 
 const Accordion: FC<OwnProps> = ({
   title,
-  chatIds,
   children,
   isExpandedByDefault = false,
   isRenaming,
@@ -42,12 +40,15 @@ const Accordion: FC<OwnProps> = ({
   leftIconName,
   contextActions,
   withInnerPadding,
+  placeholder,
   onChange,
   onAddClick,
   onMoreClick,
   onRenameFinish,
   onRenameCancel,
   className,
+  onHeaderMouseEnter,
+  onHeaderMouseLeave,
 }) => {
   const [isExpanded, setIsExpanded] = useState(isExpandedByDefault);
 
@@ -67,29 +68,32 @@ const Accordion: FC<OwnProps> = ({
     );
     return (
       <div className={innerClassName}>
-        {chatIds && chatIds.map((id) => (
-          <Chat
-            chatId={id}
-            orderDiff={0}
-            animationType={ChatAnimationTypes.Opacity}
-            isStatic
-            avatarSize="tiny"
-          />
-        ))}
         {children}
+        {(!children || (Array.isArray(children) && children.length === 0)) && (
+          <div className="placeholder">
+            No items in
+            {' '}
+            {title}
+          </div>
+        )}
       </div>
     );
   };
 
+  const accordionClassName = buildClassName(
+    'Accordion',
+    className,
+  );
+
   return (
-    <ListItem
-      isStatic
-      withPortalForMenu
-      contextActions={contextActions}
-      onClick={() => {}}
-      className={className}
-    >
-      <div className="Accordion">
+
+    <div className={accordionClassName}>
+      <ListItem
+        isStatic
+        withPortalForMenu
+        contextActions={contextActions}
+        onClick={() => {}}
+      >
         <AccordionHeader
           title={title}
           leftIconName={leftIconName}
@@ -97,14 +101,17 @@ const Accordion: FC<OwnProps> = ({
           isExpanded={isExpanded}
           isRenaming={isRenaming}
           toggleExpanded={handleToggleExpanded}
+          placeholder={placeholder}
           onAddClick={onAddClick}
           onMoreClick={onMoreClick}
           onRenameCancel={onRenameCancel}
           onRenameFinish={onRenameFinish}
+          onMouseEnter={() => onHeaderMouseEnter?.()}
+          onMouseLeave={() => onHeaderMouseLeave?.()}
         />
-        {isExpanded && renderInner()}
-      </div>
-    </ListItem>
+      </ListItem>
+      {isExpanded && renderInner()}
+    </div>
   );
 };
 

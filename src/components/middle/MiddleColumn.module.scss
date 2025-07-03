@@ -41,10 +41,6 @@
     }
   }
 
-  &.draggable {
-    -webkit-app-region: drag;
-  }
-
   &.customBgImage.blurred::before {
     filter: blur(12px);
   }

@@ -171,6 +171,10 @@ export const INITIAL_GLOBAL_STATE: GlobalState = {
     stealthMode: {},
   },
 
+  chatFilters: {
+    shouldShowLastMessage: true,
+  },
+
   groupCalls: {
     byId: {},
   },
@@ -332,6 +336,7 @@ export const INITIAL_GLOBAL_STATE: GlobalState = {
     activeId: undefined,
     byOrder: [],
     areLoaded: false,
+    selectedItemId: undefined,
   },
   expandedState: {},
 };

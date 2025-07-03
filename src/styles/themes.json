@@ -1,5 +1,5 @@
 {
-  "--color-primary": ["#3390EC", "#8774E1"],
+  "--color-primary": ["#3390EC", "#3390EC"],
   "--color-primary-opacity": ["#50A2E91E", "#8378DB1E"],
   "--color-primary-opacity-hover": ["#50A2E940", "#8378DB40"],
   "--color-primary-tint": ["#3390ec1a", "#8774e11a"],

@@ -24,7 +24,7 @@
   line-height: 1.125rem;
   color: var(--color-text);
 
-  background-color: var(--accent-background-color);
+  background-color: rgba(white, 0.1);
 
   html.theme-dark & {
     --ripple-color: rgba(255, 255, 255, 0.08);

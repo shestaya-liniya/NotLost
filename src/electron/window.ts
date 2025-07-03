@@ -1,10 +1,10 @@
 import type { HandlerDetails } from 'electron';
 import {
-  app, BrowserWindow, ipcMain, shell, systemPreferences,
-} from 'electron';
+  app, BrowserWindow, ipcMain, screen,
+  shell, systemPreferences } from 'electron';
 import path from 'path';
 
-import type { WindowButtonsPosition } from '../types/electron';
+import type { WebContentsViewBounds, WindowButtonsPosition } from '../types/electron';
 import { ElectronAction, ElectronEvent } from '../types/electron';
 
 import setupAutoUpdates, { AUTO_UPDATE_SETTING_KEY, getIsAutoUpdateEnabled } from './autoUpdates';
@@ -16,14 +16,17 @@ import {
   hasExtraWindows, IS_FIRST_RUN, IS_MAC_OS, IS_PREVIEW, IS_PRODUCTION, IS_WINDOWS,
   reloadWindows, store, WINDOW_BUTTONS_POSITION, windows,
 } from './utils';
+import { WebContentsManager } from './webContentsManager';
 import windowStateKeeper from './windowState';
 
 const ALLOWED_DEVICE_ORIGINS = ['http://localhost:1234', 'file://'];
 
 export function createWindow(url?: string) {
+  const screenDimensions = screen.getPrimaryDisplay().workAreaSize;
+
   const windowState = windowStateKeeper({
-    defaultWidth: 1088,
-    defaultHeight: 700,
+    defaultWidth: screenDimensions.width,
+    defaultHeight: screenDimensions.height,
   });
 
   let x;
@@ -60,6 +63,7 @@ export function createWindow(url?: string) {
     width,
     height,
     title: getAppTitle(),
+    backgroundColor: '#181717',
     webPreferences: {
       preload: path.join(__dirname, 'preload.cjs'),
       devTools: !IS_PRODUCTION,
@@ -69,6 +73,8 @@ export function createWindow(url?: string) {
       trafficLightPosition: WINDOW_BUTTONS_POSITION.standard,
     }),
   });
+
+  WebContentsManager.init(window);
 
   windowState.manage(window);
 
@@ -222,6 +228,23 @@ export function setupElectronActionHandlers() {
   ipcMain.handle(ElectronAction.GET_IS_TRAY_ICON_ENABLED, () => tray.isEnabled);
 
   ipcMain.handle(ElectronAction.RESTORE_LOCAL_STORAGE, () => restoreLocalStorage());
+
+  ipcMain.handle(ElectronAction.GET_WEB_CONTENTS_TABS, () => {
+    return WebContentsManager.getInstance().getTabs();
+  });
+  ipcMain.handle(ElectronAction.CLOSE_WEB_CONTENTS_TAB, (_, tabId: string) => {
+    return WebContentsManager.getInstance().closeTabById(tabId);
+  });
+  ipcMain.handle(ElectronAction.SET_WEB_CONTENTS_VIEW_BOUNDS, (_, bounds: WebContentsViewBounds) => {
+    WebContentsManager.getInstance().resize(bounds);
+  });
+  ipcMain.handle(ElectronAction.SET_WEB_CONTENTS_VIEW_URL,
+    (_, url: string) => {
+      return WebContentsManager.getInstance().open(url);
+    });
+  ipcMain.handle(ElectronAction.SET_WEB_CONTENTS_VIEW_VISIBLE, (_, isVisible: boolean) => {
+    WebContentsManager.getInstance().setCurrentViewVisible(isVisible);
+  });
 }
 
 export function setupCloseHandlers() {

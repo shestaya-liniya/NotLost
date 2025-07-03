@@ -19,12 +19,11 @@ import useOldLang from '../../../hooks/useOldLang';
 import useShowTransitionDeprecated from '../../../hooks/useShowTransitionDeprecated';
 
 import Button from '../../ui/Button';
-import SearchInput from '../../ui/SearchInput';
 import Transition from '../../ui/Transition';
 import NewChatButton from '../NewChatButton';
 import LeftSearch from '../search/LeftSearch.async';
-import ChatList from './ChatList';
 import ContactList from './ContactList.async';
+import FilteredChatList from './FilteredChatList';
 import ForumPanel from './ForumPanel';
 import Workspace from './workspace/Workspace';
 
@@ -205,59 +204,17 @@ const LeftMain: FC<OwnProps & StateProps> = ({
               }
               return undefined;
             case LeftColumnContent.ChatList:
-              return (
-                <div>
-                  <div style="padding: 0.5rem;">
-                    <SearchInput onChange={() => {}} />
-                  </div>
-                  <ChatList isActive folderType="all" />
-                </div>
-              );
+              return <FilteredChatList />;
             case LeftColumnContent.Saved:
-              return (
-                <div style="height: 100%">
-                  <div style="padding: 0.5rem;">
-                    <SearchInput onChange={() => {}} />
-                  </div>
-                  <ChatList isActive folderType="saved" />
-                </div>
-              );
+              return <FilteredChatList folderType="saved" />;
             case LeftColumnContent.AllUnread:
-              return (
-                <div style="height: 100%">
-                  <div style="padding: 0.5rem;">
-                    <SearchInput onChange={() => {}} />
-                  </div>
-                  <ChatList isActive folderType="all" category="unread" />
-                </div>
-              );
+              return <FilteredChatList category="unread" />;
             case LeftColumnContent.Groups:
-              return (
-                <div style="height: 100%">
-                  <div style="padding: 0.5rem;">
-                    <SearchInput onChange={() => {}} />
-                  </div>
-                  <ChatList isActive folderType="all" category="groups" />
-                </div>
-              );
+              return <FilteredChatList category="groups" />;
             case LeftColumnContent.Channels:
-              return (
-                <div style="height: 100%">
-                  <div style="padding: 0.5rem;">
-                    <SearchInput onChange={() => {}} />
-                  </div>
-                  <ChatList isActive folderType="all" category="channels" />
-                </div>
-              );
+              return <FilteredChatList category="channels" />;
             case LeftColumnContent.Bots:
-              return (
-                <div style="height: 100%">
-                  <div style="padding: 0.5rem;">
-                    <SearchInput onChange={() => {}} />
-                  </div>
-                  <ChatList isActive folderType="all" category="bots" />
-                </div>
-              );
+              return <FilteredChatList category="bots" />;
             case LeftColumnContent.GlobalSearch:
               return (
                 <LeftSearch

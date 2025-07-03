@@ -1,20 +1,50 @@
 import type { FC } from '../../../lib/teact/teact';
 import {
   memo,
+  useEffect,
+  useState,
 } from '../../../lib/teact/teact';
+import { withGlobal } from '../../../global';
 
+import type { ApiWorkspace } from '../../../api/notlost/types';
+import type { WebContentsTabInfo } from '../../../types/electron';
 import { LeftColumnContent } from '../../../types';
+import { ElectronEvent } from '../../../types/electron';
 
 import buildClassName from '../../../util/buildClassName';
 
 import MainSidebarSection from './MainSidebarSection';
 import MainSidebarTab from './MainSidebarTab';
 import MainSidebarTabProfile from './MainSidebarTabProfile';
+import MainSidebarWebContentsTab from './MainSidebarWebContentsTab';
 import MainSidebarWorkspaces from './MainSidebarWorkspaces';
 
 import styles from './MainSidebar.module.scss';
 
-const MainSidebar: FC = () => {
+type StateProps = {
+  workspaces: ApiWorkspace[];
+};
+
+const MainSidebar: FC<StateProps> = ({
+  workspaces,
+}) => {
+  const [webContentsTabs, setWebContentsTabs] = useState<WebContentsTabInfo[]>([]);
+  const [activeTabId, setActiveTabId] = useState<string | undefined>(undefined);
+
+  window.electron!.on(ElectronEvent.ON_WEB_CONTENTS_TABS_CHANGE, (tabsUpdate: {
+    tabs: WebContentsTabInfo[];
+    activeTabId: string;
+  }) => {
+    setWebContentsTabs(tabsUpdate.tabs);
+    setActiveTabId(tabsUpdate.activeTabId);
+  });
+
+  useEffect(() => {
+    window.electron!.getWebContentsTabs().then((tabs) => {
+      setWebContentsTabs(tabs);
+    });
+  }, []);
+
   const containerClassName = buildClassName(
     styles.container,
     'custom-scroll',
@@ -23,9 +53,6 @@ const MainSidebar: FC = () => {
   return (
     <div className={containerClassName}>
       <div className={styles.tabs}>
-        <MainSidebarSection title="Account">
-          <MainSidebarTabProfile />
-        </MainSidebarSection>
         <MainSidebarWorkspaces />
         <MainSidebarSection title="Chats">
           <MainSidebarTab
@@ -66,9 +93,27 @@ const MainSidebar: FC = () => {
             leftColumnContent={LeftColumnContent.Saved}
           />
         </MainSidebarSection>
+        {webContentsTabs.length > 0 && (
+          <MainSidebarSection title="Active links">
+            {webContentsTabs.reverse().map((t) => (
+              <MainSidebarWebContentsTab
+                webContentsTab={t}
+                workspaces={workspaces}
+                isActive={activeTabId === t.id}
+              />
+            ))}
+          </MainSidebarSection>
+        )}
       </div>
+      <MainSidebarTabProfile />
     </div>
   );
 };
 
-export default memo(MainSidebar);
+export default memo(withGlobal(
+  (global): StateProps => {
+    return {
+      workspaces: global.workspaces.byOrder,
+    };
+  },
+)(MainSidebar));

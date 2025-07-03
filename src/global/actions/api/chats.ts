@@ -244,6 +244,9 @@ addActionHandler('openChat', (global, actions, payload): ActionReturnType => {
   } else if (isChatOnlySummary && !chat.isMin) {
     actions.requestChatUpdate({ chatId: id });
   }
+
+  actions.setWorkspaceSelectedItemId(undefined);
+  actions.closeWebContentsView();
 });
 
 addActionHandler('openSavedDialog', (global, actions, payload): ActionReturnType => {
@@ -1091,6 +1094,7 @@ addActionHandler('loadChatFolders', async (global): Promise<void> => {
       chatFolders: {
         ...global.chatFolders,
         ...chatFolders,
+        areLoaded: true,
       },
     };
     setGlobal(global);

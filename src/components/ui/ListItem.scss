@@ -1,6 +1,7 @@
 .ListItem {
   position: relative;
 
+
   body.is-ios &,
   body.is-android & {
     &::after {
@@ -81,7 +82,7 @@
     background-color: var(--background-color);
     outline: none !important;
     box-shadow: none !important;
-
+    
     body.is-ios &,
     body.is-android & {
       border-radius: 0;
@@ -278,7 +279,7 @@
     .title {
       h3 {
         font-size: 0.875rem;
-        font-weight: var(--font-weight-medium);
+        font-weight: var(--font-weight-normal);
       }
     }
 

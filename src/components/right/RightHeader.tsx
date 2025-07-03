@@ -31,7 +31,6 @@ import { isUserId } from '../../util/entities/ids';
 
 import useAppLayout from '../../hooks/useAppLayout';
 import useCurrentOrPrev from '../../hooks/useCurrentOrPrev';
-import useElectronDrag from '../../hooks/useElectronDrag';
 import useFlag from '../../hooks/useFlag';
 import { useFolderManagerForChatsCount } from '../../hooks/useFolderManager';
 import useLang from '../../hooks/useLang';
@@ -681,7 +680,6 @@ const RightHeader: FC<OwnProps & StateProps> = ({
   );
 
   const headerRef = useRef<HTMLDivElement>();
-  useElectronDrag(headerRef);
 
   return (
     <div className="RightHeader" ref={headerRef}>

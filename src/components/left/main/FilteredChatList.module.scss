@@ -1,0 +1,31 @@
+.Container {
+  height: 100%;
+}
+
+.SearchContainer {
+  position: relative;
+  display: flex;
+  padding: 0.5rem;
+
+  .search {
+    flex: 1;
+  }
+}
+
+.IconContainer {
+  display: grid;
+  place-content: center;
+  margin-left: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--border-radius-medium);
+}
+
+.SettingsIcon {
+  color: white;
+  font-size: 1rem;
+}
+
+.FilterMenu {
+  position: relative;
+}

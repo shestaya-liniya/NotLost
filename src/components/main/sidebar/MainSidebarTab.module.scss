@@ -7,7 +7,7 @@
   padding: 0.25rem 0.5rem;
   border-radius: var(--border-radius-default-tiny);
 
-  font-size: 14px;
+  font-size: 13px;
   color: var(--color-text-secondary);
 
   &:hover {
@@ -26,6 +26,11 @@
   }
 }
 
+.ProfileSelectorContainer {
+  margin-top: auto;
+  margin-left: -1rem;
+}
+
 .ListItem {
   :global(.ListItem-button) {
     min-height: unset !important;
@@ -36,5 +41,6 @@
     padding: 0.25rem 0.5rem !important;
   }
 }
+
 
 

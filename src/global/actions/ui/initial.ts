@@ -136,7 +136,9 @@ addCallback((global: GlobalState) => {
     shouldInit: false,
   }, tabState.id);
 
-  const { messageTextSize, language, shouldUseSystemTheme } = selectSharedSettings(global);
+  const { language, shouldUseSystemTheme } = selectSharedSettings(global);
+
+  const messageTextSize = 14;
 
   const globalTheme = selectTheme(global);
   const systemTheme = getSystemTheme();

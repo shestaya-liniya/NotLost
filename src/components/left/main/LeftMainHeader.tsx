@@ -28,7 +28,6 @@ import { formatDateToString } from '../../../util/dates/dateFormat';
 
 import useAppLayout from '../../../hooks/useAppLayout';
 import useConnectionStatus from '../../../hooks/useConnectionStatus';
-import useElectronDrag from '../../../hooks/useElectronDrag';
 import useFlag from '../../../hooks/useFlag';
 import { useHotkeys } from '../../../hooks/useHotkeys';
 import useLang from '../../../hooks/useLang';
@@ -216,7 +215,6 @@ const LeftMainHeader: FC<OwnProps & StateProps> = ({
   } = useLeftHeaderButtonRtlForumTransition(shouldHideSearch);
 
   const headerRef = useRef<HTMLDivElement>();
-  useElectronDrag(headerRef);
 
   const withStoryToggler = !isSearchFocused
     && !selectedSearchDate && !globalSearchChatId && !areContactsVisible;

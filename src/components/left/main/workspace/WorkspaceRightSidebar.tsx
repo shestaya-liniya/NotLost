@@ -15,7 +15,6 @@ import { useFolderManagerForOrderedIds } from '../../../../hooks/useFolderManage
 
 import Icon from '../../../common/icons/Icon';
 import PeerPicker from '../../../common/pickers/PeerPicker';
-import Button from '../../../ui/Button';
 import Portal from '../../../ui/Portal';
 import SearchInput from '../../../ui/SearchInput';
 import Transition from '../../../ui/Transition';
@@ -35,7 +34,7 @@ const WorkspaceRightSidebar: FC<OwnProps> = ({
   onClose,
   handleStartAddingNewSection,
 }) => {
-  const { updateWorkspaceChats, updateSectionChats } = getActions();
+  const { updateWorkspaceChats, updateChatFolderChats } = getActions();
   const [searchValue, setSearchValue] = useState('');
 
   const folderAllOrderedIds = useFolderManagerForOrderedIds(ALL_FOLDER_ID);
@@ -73,9 +72,9 @@ const WorkspaceRightSidebar: FC<OwnProps> = ({
         });
         break;
       }
-      case 'section': {
-        updateSectionChats({
-          sectionId: activeEntity.id,
+      case 'chatFolder': {
+        updateChatFolderChats({
+          chatFolderId: activeEntity.id,
           chatIds: newSelectedIds,
         });
         break;
@@ -84,40 +83,7 @@ const WorkspaceRightSidebar: FC<OwnProps> = ({
       default:
         break;
     }
-  }, [activeEntity, activeEntityType, updateWorkspaceChats, updateSectionChats]);
-
-  const renderCreateNewBlockInside = () => {
-    // add a section in workspace, or add a folder in section
-
-    switch (activeEntityType) {
-      case 'workspace': {
-        return (
-          <Button
-            onClick={handleStartAddingNewSection}
-            size="tiny"
-            color="bezeled"
-            noForcedUpperCase
-          >
-            Create new section
-          </Button>
-        );
-      }
-
-      case 'section': {
-        return (
-          <Button
-            size="tiny"
-            color="bezeled"
-            noForcedUpperCase
-          >
-            Create new folder
-          </Button>
-        );
-      }
-    }
-
-    return undefined;
-  };
+  }, [activeEntity, activeEntityType]);
 
   const containerClassName = buildClassName(styles.container);
 
@@ -139,13 +105,9 @@ const WorkspaceRightSidebar: FC<OwnProps> = ({
                 <Icon name="close" className={styles.closeButton} onClick={onClose} />
               </div>
               <SearchInput onChange={setSearchValue} />
-              <div style="padding: 0.5rem 0">
-                {renderCreateNewBlockInside()}
-              </div>
-
               <PeerPicker
                 itemIds={displayedIds}
-                selectedIds={activeEntity.chatIds}
+                selectedIds={activeEntity.chats.map((c) => c.chatId)}
                 filterValue={searchValue}
                 categoryPlaceholderKey="FilterChatTypes"
                 searchInputId="new-group-picker-search"

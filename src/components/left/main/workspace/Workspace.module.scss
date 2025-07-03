@@ -12,12 +12,35 @@
   margin-bottom: 0.5rem;
   border-radius: var(--border-radius-default-tiny);
 
+  &:hover {
+    .addLinkButton, .addFolderButton {
+      opacity: 1;
+    }
+  }
+
   .headerTitle {
     font-size: 12px;
   }
 
-  .addSectionButton {
+  .headerButtons {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
     margin-left: auto;
+  }
+
+  .addLinkButton, .addFolderButton {
+    opacity: 0;
+    padding: 0.25rem;
+    border-radius: var(--border-radius-default-tiny);
+    transition: background-color 0.15s ease-in-out, opacity 0.15s ease-in-out;;
+
+    &:hover {
+      background-color: var(--color-chat-hover);
+    }
+  }
+
+  .addSectionButton {
     padding: 0.25rem;
     border-radius: var(--border-radius-default-tiny);
     transition: background-color 0.15s ease-in-out;
@@ -66,4 +89,102 @@
   top: 1rem;
   right: -2rem;
   background-color: aqua;
+}
+
+.Link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem;
+
+  :global(.icon) {
+    color: var(--color-links);
+  }
+
+  .linkTitle {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+.LinkIconContainer {
+  height: 2rem;
+  min-width: 2rem;
+  display: grid;
+  place-content: center;
+  border-radius: var(--border-radius-forum-avatar);
+  background-color: rgba(var(--color-links-rgb), 0.1);
+  cursor: pointer;
+
+  transition: background-color 0.15s ease-in-out;
+
+  img {
+    height: 1rem;
+    width: 1rem;
+    transition: all 0.15s ease-in-out;
+  }
+
+  i {
+    color: var(--color-links)
+  }
+
+  &.withFavicon {
+    background-color: var(--color-chat-hover);
+  }
+}
+
+.WorkspaceChatFolder {
+  :global(.AccordionHeader) {
+    padding: 0.25rem;
+    height: auto;
+  }
+
+  :global(.AccordionHeader .title) {
+    color: var(--color-text);
+    font-size: 0.875rem !important;
+  }
+
+  .new {
+    i {
+      padding: 1rem;
+    }
+  }
+}
+
+.CustomListItem {
+  :global(.ListItem-button) {
+    padding: 0;
+    min-height: 0;
+  }
+
+  &.selected {
+    :global(.ListItem-button) {
+      background-color: var(--color-telegram-blue);
+      color: white;
+
+      i {
+        color: white;
+      }
+    }
+
+    .LinkIconContainer {
+      background-color: transparent;
+
+      img {
+        transform: scale(1.2);
+      }
+
+      &.withFavicon {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.Hover {
+  transition: background-color 0.15s ease;
+  border-radius: var(--border-radius-default-tiny);
+  &:hover {
+    background-color: var(--color-chat-hover);
+  }
 }

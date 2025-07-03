@@ -25,16 +25,11 @@
     }
   }
 
-  &:active {
-    background-color: rgba(40, 40, 40, 0.8);
-  }
-
   &.highlighted {
     background-color: var(--color-telegram-blue);
 
     i {
       color: white;
-
       &:hover {
         color: var(--color-telegram-blue);
         background-color: white;
@@ -44,6 +39,18 @@
     .title {
       color: white;
     }
+
+    .leftIconContainer {
+      background-color: transparent;
+
+      i {
+        color: white;
+      }
+    }
+  }
+
+  &.renaming:hover {
+    background-color: transparent;
   }
 
   .title {
@@ -55,10 +62,11 @@
     padding: 0.125rem;
     border-radius: var(--border-radius-default-tiny);
     color: var(--color-text-secondary);
-    transition: all 0.15s ease;
+    transition: font-size 0.15s ease;
 
     &.icon-down {
-      font-size: 12px;
+      font-size: 14px;
+      transition: all 0.15s ease;
     }
 
     &:hover {
@@ -82,16 +90,23 @@
       opacity: 0;
     }
   }
-
-  :global(.ListItem-button) {
-    min-height: unset !important;
-    padding: 0 !important;
-  }
-
-  :global(.Chat .ListItem-button) {
-    padding: 0.25rem 0.5rem !important;
-  }
 }
+
+.leftIconContainer {
+    height: 2rem;
+    min-width: 2rem;
+    display: grid;
+    place-content: center;
+    border-radius: var(--border-radius-forum-avatar);
+    background-color: rgba(var(--color-links-rgb), 0.1);
+    cursor: pointer;
+
+    transition: background-color 0.15s ease-in-out;
+
+    i {
+      color: var(--color-links);
+    }
+  }
 
 
 
@@ -106,7 +121,15 @@
   }
 
   &.withPadding {
+    padding-top: 0.25rem;
     padding-left: 0.5rem;
+  }
+
+  .placeholder {
+    margin-left: -0.5rem;
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-text-secondary);
   }
 }
 
@@ -114,6 +137,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  padding: 0.25rem;
+  background-color: transparent !important;
 
   .leftIcon {
     color: var(--color-links);
@@ -139,5 +164,6 @@
 }
 
 .rotateDownIcon {
+  transition: transform 0.15s ease;
   transform: rotate(-90deg);
 }

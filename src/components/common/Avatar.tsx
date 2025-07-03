@@ -44,8 +44,6 @@ import Icon from './icons/Icon';
 
 import './Avatar.scss';
 
-import hexMask from '../../assets/hex.svg';
-
 const LOOP_COUNT = 3;
 
 export const AVATAR_SIZES = {
@@ -252,8 +250,6 @@ const Avatar: FC<OwnProps> = ({
   const isRoundedRect = forceRoundedRect || (isCustomPeer && peer.isAvatarSquare)
     || (isForum && !((withStory || withStorySolid) && realPeer?.hasStories));
 
-  const isHexagonalRect = isForum;
-
   const isPremiumGradient = isCustomPeer && peer.withPremiumGradient;
   const customColor = isCustomPeer && peer.customPeerAvatarColor;
 
@@ -268,7 +264,6 @@ const Avatar: FC<OwnProps> = ({
     isReplies && 'replies-bot-account',
     isPremiumGradient && 'premium-gradient-bg',
     isRoundedRect && 'roundedRect',
-    isHexagonalRect && 'hex',
     (photo || webPhoto) && 'force-fit',
     ((withStory && realPeer?.hasStories) || forPremiumPromo) && 'with-story-circle',
     withStorySolid && realPeer?.hasStories && 'with-story-solid',
@@ -281,7 +276,6 @@ const Avatar: FC<OwnProps> = ({
   const fullStyle = buildStyle(
     `--_size: ${pxSize}px;`,
     customColor && `--color-user: ${customColor}`,
-    isHexagonalRect && `mask-image: url(${hexMask})`,
   );
 
   const hasMedia = Boolean(isSavedMessages || imgUrl);

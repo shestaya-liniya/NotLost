@@ -44,11 +44,14 @@ import EmptyFolder from './EmptyFolder';
 import FrozenAccountNotification from './FrozenAccountNotification';
 import UnconfirmedSession from './UnconfirmedSession';
 
+export type ChatListFolderType = 'all' | 'archived' | 'saved' | 'folder';
+export type ChatListCategory = 'unread' | 'groups' | 'channels' | 'bots';
+
 type OwnProps = {
   className?: string;
-  folderType: 'all' | 'archived' | 'saved' | 'folder';
+  folderType: ChatListFolderType;
+  category?: ChatListCategory;
   folderId?: number;
-  category?: 'unread' | 'groups' | 'channels' | 'bots';
   isActive: boolean;
   canDisplayArchive?: boolean;
   archiveSettings?: GlobalState['archiveSettings'];
@@ -57,6 +60,7 @@ type OwnProps = {
   isAccountFrozen?: boolean;
   isMainList?: boolean;
   foldersDispatch?: FolderEditDispatch;
+  shouldShowLastMessage?: boolean;
 };
 
 const INTERSECTION_THROTTLE = 200;
@@ -76,6 +80,7 @@ const ChatList: FC<OwnProps> = ({
   isAccountFrozen,
   isMainList,
   foldersDispatch,
+  shouldShowLastMessage = true,
 }) => {
   const {
     openChat,
@@ -263,7 +268,7 @@ const ChatList: FC<OwnProps> = ({
           offsetTop={offsetTop}
           observeIntersection={observe}
           onDragEnter={handleDragEnter}
-          withSubtitle
+          withSubtitle={shouldShowLastMessage}
         />
       );
     });
